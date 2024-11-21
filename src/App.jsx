@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import LandingPage from './pages/landing'
-import './App.css'
-
-function App() {
-
+import { Routes,Route } from "react-router-dom"
+import Landing from "./pages/landing"
+import TeamPage from "./pages/team"
+const App = () => {
   return (
-    <>
-      <LandingPage />
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/team" element={<TeamPage />} />
+      </Routes>
+    </div>
   )
 }
 

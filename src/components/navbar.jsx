@@ -21,7 +21,7 @@ const Navbar = () => {
           </Link>
         </div>
         <nav className={`md:flex items-center space-x-6 ${isMenuOpen ? 'flex flex-col absolute top-16 left-0 right-0 bg-white p-4 shadow-md' : 'hidden'}`}>
-          <NavLink to="/home" onClick={toggleMenu}>Home</NavLink>
+          <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
           <NavLink to="/events" onClick={toggleMenu}>Events</NavLink>
           <NavLink to="/team" onClick={toggleMenu}>Team</NavLink>
           <NavLink to="/projects" onClick={toggleMenu}>Projects</NavLink>

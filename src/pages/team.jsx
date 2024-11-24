@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
+import { motion } from 'framer-motion';
 
 const TeamPage = () => {
   const teamMembers = [
@@ -128,15 +129,44 @@ const TeamPage = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[url('/team-bg.png')] bg-cover bg-center flex flex-col justify-center items-center">
+      <div className=" cursor-pointermin-h-screen bg-[url('/team-bg.png')] bg-cover bg-center flex flex-col justify-center items-center">
         <h1 className="text-4xl font-bold text-black m-10">Meet the Team...</h1>
         <div className="grid grid-cols-5 gap-8">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-white rounded-lg p-4 flex flex-col items-center">
-              <img src={`/images/${member.image}`} alt={member.name} className="w-32 h-32 rounded-full mb-4" />
-              <h3 className="text-xl font-bold">{member.name}</h3>
-              <p className="text-gray-500">{member.role}</p>
-            </div>
+            <motion.div 
+              key={index} 
+              className="bg-white rounded-lg p-4 flex flex-col items-center"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.15)",
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.5, delay: index * 0.1 } }}
+            >
+              <motion.img
+                src={`/images/${member.image}`}
+                alt={member.name}
+                className="w-32 h-32 rounded-full mb-4"
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                transition={{ type: 'spring', stiffness: 200 }}
+              />
+              <motion.h3 
+                className="text-xl font-bold"
+                whileHover={{ y: -5, color: "#1d4ed8" }}
+                transition={{ duration: 0.2 }}
+              >
+                {member.name}
+              </motion.h3>
+              <motion.p 
+                className="text-gray-500"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                {member.role}
+              </motion.p>
+            </motion.div>
           ))}
         </div>
       </div>

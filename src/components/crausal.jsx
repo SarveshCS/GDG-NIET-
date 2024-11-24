@@ -33,7 +33,6 @@ const events = [
 
 const EventCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [translateX, setTranslateX] = useState(0);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -48,15 +47,14 @@ const EventCarousel = () => {
     return () => clearInterval(interval);
   }, [nextSlide]);
 
-  useEffect(() => {
-    setTranslateX(-currentIndex * 100);
-  }, [currentIndex]);
-
   return (
-    <div className="relative w-full max-w-6xl mx-auto px-8 py-8">
-      <div className="relative" style={{ width: '300%', display: 'flex', transition: 'transform 0.5s ease', transform: `translateX(${translateX / 3}%)` }}>
+    <div className="relative w-full max-w-6xl mx-auto px-8 py-8 overflow-hidden">
+      <div
+        className="flex transition-transform duration-500"
+        style={{ transform: `translateX(-${(currentIndex * 100) / 3}%)`, width: '300%' }}
+      >
         {events.map((event, index) => (
-          <div key={index} className="w-1/3 px-2">
+          <div key={index} className="w-1/3 px-2 flex-shrink-0">
             <div className="relative overflow-hidden rounded-lg shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 z-10" />
               <img
@@ -112,4 +110,3 @@ const EventCarousel = () => {
 };
 
 export default EventCarousel;
-

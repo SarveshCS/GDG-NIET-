@@ -24,14 +24,12 @@ const Navbar = () => {
           <NavLink to="/" onClick={toggleMenu}>Home</NavLink>
           <NavLink to="/events" onClick={toggleMenu}>Events</NavLink>
           <NavLink to="/team" onClick={toggleMenu}>Team</NavLink>
-          <NavLink to="/projects" onClick={toggleMenu}>Projects</NavLink>
-          <NavLink to="/blogs" onClick={toggleMenu}>Blogs</NavLink>
           <Link
             to="/contact"
             className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
             onClick={toggleMenu}
           >
-            Contact
+            Exbhition Center
           </Link>
         </nav>
         <button className="md:hidden" onClick={toggleMenu} aria-label="Toggle menu">

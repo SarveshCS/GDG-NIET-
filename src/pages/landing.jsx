@@ -7,6 +7,7 @@ import HeroSection8 from '../components/co'
 import EventCarousel from '../components/crausal'
 import SocialConnect from '../components/connect'
 import Footer from '../components/footer'
+import CollegeMap from '@/components/map'
 export default function Landing() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function Landing() {
       <HeroSection8 />
       <EventCarousel />
       <SocialConnect />
+      <CollegeMap />
       <Footer />
     </>
   )

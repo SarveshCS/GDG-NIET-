@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import { motion } from 'framer-motion';
+import Footer2 from '@/components/footer';
 
 const TeamPage = () => {
   const teamMembers = [
@@ -170,6 +171,7 @@ const TeamPage = () => {
           ))}
         </div>
       </div>
+      <Footer2 />
     </>
   );
 };

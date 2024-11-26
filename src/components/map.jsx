@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { MapPin, Calendar, Users, Globe } from 'lucide-react';
 
 const CollegeMap = () => {
+  const mapRef = useRef(null);
+  const [mapError, setMapError] = useState(null);
+
   const gdscInfo = {
-    collegeName: "XYZ College of Engineering",
-    chapterName: "GDSC XYZ College",
-    address: "123 College Road, Tech City, IN 123456",
-    coordinates: { lat: 28.462036552708618, lng: 77.46279832551544 },
+    collegeName: "Noida Institute of Engineering and Technology (NIET, Greater Noida)",
+    chapterName: "Noida Institute of Engineering and Technology (NIET, Greater Noida",
+    address: "",
+    coordinates: { lat: 28.463111779497158, lng: 77.49078985504053 }, 
     leadName: "Anusha Tiwari",
     memberCount: 150,
     foundedYear: 2020,
@@ -17,6 +22,47 @@ const CollegeMap = () => {
       { name: "Web Development Workshop", date: "2024-04-05" },
     ]
   };
+
+  useEffect(() => {
+    if (!mapRef.current) {
+      setMapError("Map container not found");
+      return;
+    }
+
+    let map = null;
+
+    try {
+      map = L.map(mapRef.current).setView([gdscInfo.coordinates.lat, gdscInfo.coordinates.lng], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      const customIcon = L.icon({
+        iconUrl: '/marker.svg',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -40],
+      });
+
+      L.marker([gdscInfo.coordinates.lat, gdscInfo.coordinates.lng], { icon: customIcon })
+        .addTo(map)
+        .bindPopup(`${gdscInfo.chapterName}<br>${gdscInfo.address}`)
+        .openPopup();
+
+      console.log("Map initialized successfully");
+    } catch (error) {
+      console.error("Error initializing map:", error);
+      setMapError(`Error initializing map: ${error instanceof Error ? error.message : String(error)}`);
+    }
+
+    return () => {
+      if (map) {
+        map.remove();
+        console.log("Map removed");
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -72,27 +118,17 @@ const CollegeMap = () => {
 
       {/* Map Area */}
       <div className="flex-1 relative">
-        <img
-          src="/api/placeholder/1920/1080"
-          alt={`Map of ${gdscInfo.collegeName}`}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <MapPin size={24} className="text-blue-600" />
+        {mapError ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-red-500">
+            {mapError}
           </div>
-        </div>
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${gdscInfo.coordinates.lat},${gdscInfo.coordinates.lng}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-6 right-6 bg-white text-blue-600 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-50 transition-colors text-sm"
-        >
-          Open in Google Maps
-        </a>
+        ) : (
+          <div ref={mapRef} className="absolute inset-0"></div>
+        )}
       </div>
     </div>
   );
 };
 
 export default CollegeMap;
+

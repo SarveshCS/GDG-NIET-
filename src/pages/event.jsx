@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Clock, Users, ChevronRight, Search } from 'lucide-react';
+import { Calendar, MapPin, Clock, Users, ChevronRight, Search, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 
 const EventsPage = () => {
     const [selectedTab, setSelectedTab] = useState('upcoming');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     const events = {
         upcoming: [
@@ -117,7 +119,10 @@ const EventsPage = () => {
     };
 
     const EventCard = ({ event }) => (
-        <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
+        <Card 
+            className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => setSelectedEvent(event)}
+        >
             <img
                 src={event.image}
                 alt={event.title}
@@ -171,6 +176,59 @@ const EventsPage = () => {
                 </div>
             </CardContent>
         </Card>
+    );
+
+    const EventDetailsDialog = ({ event, onClose }) => (
+        <Dialog open={!!event} onOpenChange={onClose}>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle>{event?.title}</DialogTitle>
+                    <DialogDescription>Event Details</DialogDescription>
+                </DialogHeader>
+                <div className="mt-4 space-y-4">
+                    <img
+                        src={event?.image}
+                        alt={event?.title}
+                        className="w-full h-48 object-cover rounded-lg"
+                    />
+                    <div className="space-y-2 text-sm">
+                        <div className="flex items-center gap-2">
+                            <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                            <span>{event?.date}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                            <span>{event?.time}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                            <span>{event?.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                            <span>{event?.attendees} attendees</span>
+                        </div>
+                    </div>
+                    <p className="text-gray-600 text-sm">{event?.description}</p>
+                    <div className="flex flex-wrap gap-1">
+                        {event?.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                    {selectedTab === 'upcoming' && (
+                        <button className="w-full flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                            Register Now
+                            <ChevronRight className="w-4 h-4" />
+                        </button>
+                    )}
+                </div>
+            </DialogContent>
+        </Dialog>
     );
 
     const filteredEvents = events[selectedTab].filter(event =>
@@ -230,6 +288,11 @@ const EventsPage = () => {
                         No events found matching your search criteria.
                     </div>
                 )}
+
+                <EventDetailsDialog 
+                    event={selectedEvent} 
+                    onClose={() => setSelectedEvent(null)} 
+                />
             </div>
             <Footer />
         </>
@@ -237,3 +300,4 @@ const EventsPage = () => {
 };
 
 export default EventsPage;
+

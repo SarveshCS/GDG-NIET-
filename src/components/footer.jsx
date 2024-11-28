@@ -1,72 +1,52 @@
 export default function Footer2() {
     return (
-      <footer className="py-6 bg-white w-full">
+      <footer className="py-6 bg-white w-full overflow-hidden">
         <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
           <div className="grid grid-cols-12">
             <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
               <a href="#" className="flex justify-center space-x-3 md:justify-start">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/30">
-                  Logo
+                  <img src="/images/logo.svg" alt="" srcset="" />
                 </div>
-                <span className="self-center text-2xl font-semibold">Brand name</span>
+                <span className="self-center text-2xl font-semibold">GDG NIET</span>
               </a>
             </div>
             <div className="col-span-6 text-center md:text-left md:col-span-3">
-              <p className="pb-1 text-lg font-medium">Category</p>
+              <p className="pb-1 text-lg font-medium text-blue-400">About Us</p>
               <ul>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    Meet the team
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    GDG Chapter
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:dark:text-gray-400">
-                    Link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    Exhibition Center
                   </a>
                 </li>
               </ul>
             </div>
             <div className="col-span-6 text-center md:text-left md:col-span-3">
-              <p className="pb-1 text-lg font-medium">Category</p>
+              <p className="pb-1 text-lg font-medium text-blue-400">Useful Links</p>
               <ul>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    Past Events
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    Upcoming Events
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:dark:text-gray-400">
-                    Link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:dark:text-gray-400">
-                    Link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:dark:text-gray-400">
-                    Link
+                    Sitemap
                   </a>
                 </li>
               </ul>

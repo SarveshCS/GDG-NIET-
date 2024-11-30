@@ -11,7 +11,7 @@ const App = () => {
         <Route path="/events" element={<EventsPage />} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

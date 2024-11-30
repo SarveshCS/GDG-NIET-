@@ -1,6 +1,6 @@
-import { Routes,Route } from "react-router-dom"
-import Landing from "./pages/landing"
-import TeamPage from "./pages/team"
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/landing";
+import TeamPage from "./pages/team";
 const App = () => {
   return (
     <div>
@@ -9,7 +9,7 @@ const App = () => {
         <Route path="/team" element={<TeamPage />} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

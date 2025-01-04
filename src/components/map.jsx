@@ -65,9 +65,9 @@ const CollegeMap = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
       {/* Left Panel */}
-      <div className="w-96 bg-white shadow-lg p-8 overflow-y-auto">
+      <div className="w-full lg:w-96 bg-white shadow-lg p-4 lg:p-8 overflow-y-auto">
         <div className="space-y-6">
           {/* Chapter Info */}
           <div>
@@ -117,9 +117,9 @@ const CollegeMap = () => {
       </div>
 
       {/* Map Area */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative h-[400px] lg:h-auto">
         {mapError ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-red-500">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-red-500 p-4 text-center">
             {mapError}
           </div>
         ) : (

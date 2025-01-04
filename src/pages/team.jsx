@@ -244,23 +244,13 @@ const TeamPage = () => {
                   >
                     <div className="relative w-full overflow-hidden">
                       <span className="absolute -left-2 top-0 text-blue-400 text-lg">"</span>
-                      <p className="text-white font-medium text-center italic px-2">
-                      <span
-  className={`inline-block ${
-    member.tagline.length > 120
-      ? 'text-[8px] leading-[1.2] h-[20px]'
-      : member.tagline.length > 90
-      ? 'text-[10px] leading-[1.4] h-[24px]'
-      : member.tagline.length > 60
-      ? 'text-[12px] leading-[1.6] h-[28px]'
-      : member.tagline.length > 30
-      ? 'text-sm leading-[1.8] h-[32px]'
-      : 'text-base leading-[2] h-[36px]'
-  }`}
->
-  {member.tagline}
-</span>
-
+                      <p className={`text-white font-medium text-center italic px-2 ${
+                        member.tagline.length > 150 ? 'text-[8px]' :
+                        member.tagline.length > 100 ? 'text-[10px]' :
+                        member.tagline.length > 70 ? 'text-[12px]' :
+                        'text-sm'
+                      } leading-tight`}>
+                        {member.tagline}
                       </p>
                       <span className="absolute -right-2 bottom-0 text-blue-400 text-lg">"</span>
                     </div>

@@ -244,7 +244,7 @@ const TeamPage = () => {
               >
                 {member.name}
               </motion.h3>
-
+              
               {/* Social Media Links */}
               {hoveredIndex === index && (
                 <motion.div
@@ -252,6 +252,13 @@ const TeamPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   className="absolute inset-0 bg-black bg-opacity-90 rounded-lg flex flex-col p-2 md:p-4 justify-center items-center"
                 >
+                <div className='space-y-2'>
+                  <div className='text-white text-center'>
+                    {member.name}
+                  </div>
+                  <div className='text-white text-center'>
+                  {member.role}
+                  </div>
                   <div className="flex space-x-4">
                     <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
                       <CiLinkedin className="w-6 h-6 text-blue-600" />
@@ -262,6 +269,7 @@ const TeamPage = () => {
                     <a href={member.insta} target="_blank" rel="noopener noreferrer">
                       <FaInstagram className="w-6 h-6 text-red-500" />
                     </a>
+                  </div>
                   </div>
                 </motion.div>
               )}

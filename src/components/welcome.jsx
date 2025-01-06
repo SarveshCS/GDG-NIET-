@@ -46,7 +46,7 @@ export default function GDSCHeader() {
                     <button className="px-6 py-2 rounded-full bg-[#4285F4] text-white hover:bg-[#4285F4]/90 transition-colors">
                         Collaborate
                     </button>
-                    <button className="px-6 py-2 rounded-full bg-[#0F9D58] text-white hover:bg-[#0F9D58]/90 transition-colors">
+                    <button className="px-5 py-2 rounded-full bg-[#0F9D58] text-white hover:bg-[#0F9D58]/90 transition-colors">
                         Grow
                     </button>
                 </div>
@@ -54,4 +54,3 @@ export default function GDSCHeader() {
         </div>
     )
 }
-

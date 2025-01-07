@@ -209,18 +209,20 @@ const TeamPage = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-[url('/team-bg.png')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="text-4xl font-bold text-black m-10">Meet the Team...</h1>
+        {/* Beautiful Tagline */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600 m-10 text-center">
+          Meet the Dream Team Behind the Magic!
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 px-4 md:px-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
-              className={`relative bg-white rounded-lg p-3 md:p-4 flex flex-col items-center aspect-square ${
+              className={`relative bg-white rounded-lg p-4 flex flex-col items-center aspect-square overflow-hidden shadow-md transition-all duration-300 ease-in-out transform ${
                 hoveredIndex !== null && hoveredIndex !== index ? 'blur-sm' : ''
               }`}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.15)",
-                transition: { duration: 0.3 },
+                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0 }}
@@ -232,44 +234,51 @@ const TeamPage = () => {
               <motion.img
                 src={`/images/${member.image}`}
                 alt={member.name}
-                className="w-16 h-16 md:w-24 md:h-24 rounded-full mb-2"
-                whileHover={{ scale: 1.1, rotate: 10 }}
+                className="w-16 h-16 md:w-24 md:h-24 rounded-full mb-3"
+                whileHover={{ scale: 1.1 }}
                 transition={{ type: 'spring', stiffness: 200 }}
               />
 
               {/* Name Section */}
               <motion.h3
-                className="text-base md:text-lg font-bold text-center"
-                whileHover={{ y: -5, color: "#FFFFFF" }}
+                className="text-lg md:text-xl font-bold text-gray-800 text-center"
+                whileHover={{ y: -5 }}
               >
                 {member.name}
               </motion.h3>
+              
+              <motion.p
+                className="text-sm md:text-md text-gray-600 text-center mb-4"
+                whileHover={{ y: -5 }}
+              >
+                {member.role}
+              </motion.p>
               
               {/* Social Media Links */}
               {hoveredIndex === index && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="absolute inset-0 bg-black bg-opacity-90 rounded-lg flex flex-col p-2 md:p-4 justify-center items-center"
+                  className="absolute inset-0 bg-black bg-opacity-70 rounded-lg flex flex-col p-4 justify-center items-center"
                 >
-                <div className='space-y-2'>
-                  <div className='text-white text-center'>
-                    {member.name}
-                  </div>
-                  <div className='text-white text-center'>
-                  {member.role}
-                  </div>
-                  <div className="flex space-x-4">
-                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                      <CiLinkedin className="w-6 h-6 text-blue-600" />
-                    </a>
-                    <a href={member.github} target="_blank" rel="noopener noreferrer">
-                      <FaGithub className="w-6 h-6 text-white" />
-                    </a>
-                    <a href={member.insta} target="_blank" rel="noopener noreferrer">
-                      <FaInstagram className="w-6 h-6 text-red-500" />
-                    </a>
-                  </div>
+                  <div>
+                    <div className='text-white'>
+                      {member.name}
+                    </div>
+                    <div className='text-white'>
+                      {member.role}
+                    </div>
+                    <div className="flex space-x-4">
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                        <CiLinkedin className="w-7 h-7 text-blue-600 hover:text-white transition" />
+                      </a>
+                      <a href={member.github} target="_blank" rel="noopener noreferrer">
+                        <FaGithub className="w-7 h-7 text-black hover:text-gray-600 transition" />
+                      </a>
+                      <a href={member.insta} target="_blank" rel="noopener noreferrer">
+                        <FaInstagram className="w-7 h-7 text-red-500 hover:text-white transition" />
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               )}

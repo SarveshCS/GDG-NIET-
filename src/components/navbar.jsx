@@ -31,7 +31,7 @@ const Navbar = () => {
           <NavLink to="/events" onClick={toggleMenu}>Events</NavLink>
           <NavLink to="/team" onClick={toggleMenu}>Team</NavLink>
           <Link
-            to="/contact"
+            to="/exhib"
             className="w-full md:w-auto px-4 py-2 text-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
             onClick={toggleMenu}
           >

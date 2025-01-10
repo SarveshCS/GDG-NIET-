@@ -217,7 +217,7 @@ const TeamPage = () => {
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
-              className={`relative bg-white rounded-lg p-4 flex flex-col items-center aspect-square overflow-hidden shadow-md transition-all duration-300 ease-in-out transform ${
+              className={`relative bg-white rounded-lg p-10 flex flex-col items-center aspect-square overflow-hidden shadow-md transition-all duration-300 ease-in-out transform ${
                 hoveredIndex !== null && hoveredIndex !== index ? 'blur-sm' : ''
               }`}
               whileHover={{

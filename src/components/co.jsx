@@ -86,7 +86,7 @@ export default function HeroSection8() {
           key={index}
         >
           <motion.div
-            className={`${section.bgColor} h-40 w-40 md:h-72 md:w-72 absolute rounded-full blur-[80px] filter top-[-50px] md:top-[-100px] left-5 md:left-10`}
+            className={`h-40 w-40 md:h-72 md:w-72 absolute rounded-full blur-[80px] filter top-[-50px] md:top-[-100px] left-5 md:left-10`}
             variants={blurVariants}
             initial="initial"
             animate="animate"

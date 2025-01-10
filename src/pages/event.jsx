@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Clock, Users, ChevronRight, Search, X } from 'lucide-react';
+import { Calendar, MapPin, Clock, Users, ChevronRight, Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
@@ -21,7 +21,7 @@ const EventsPage = () => {
                 time: "10:00 AM - 4:00 PM",
                 location: "CS Block Auditorium, NIET",
                 description: "Join us for an exciting day of Flutter development with hands-on workshops and expert talks.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 150,
                 tags: ["Flutter", "Mobile Dev", "Workshop"]
             },
@@ -32,7 +32,7 @@ const EventsPage = () => {
                 time: "11:00 AM - 3:00 PM",
                 location: "IT Block Seminar Hall, NIET",
                 description: "Learn about Google Cloud Platform and get hands-on experience with cloud technologies.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
                 attendees: 100,
                 tags: ["Cloud", "GCP", "DevOps"]
             },
@@ -43,7 +43,7 @@ const EventsPage = () => {
                 time: "10:00 AM - 5:00 PM",
                 location: "CS Block Lab 3, NIET",
                 description: "Dive deep into Android development with Kotlin and Jetpack Compose.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 80,
                 tags: ["Android", "Kotlin", "Mobile"]
             },
@@ -54,7 +54,7 @@ const EventsPage = () => {
                 time: "2:00 PM - 6:00 PM",
                 location: "Online (Virtual Event)",
                 description: "Learn modern web development using React and Next.js framework.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2061&q=80",
                 attendees: 200,
                 tags: ["Web Dev", "React", "Next.js"]
             },
@@ -65,7 +65,7 @@ const EventsPage = () => {
                 time: "9:00 AM - 4:00 PM",
                 location: "IT Block Auditorium, NIET",
                 description: "Intensive bootcamp covering ML basics to advanced topics with TensorFlow.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 120,
                 tags: ["ML", "AI", "TensorFlow"]
             },
@@ -76,7 +76,7 @@ const EventsPage = () => {
                 time: "10:00 AM - 4:00 PM",
                 location: "Main Auditorium, NIET",
                 description: "Celebrating women in technology with inspiring talks and workshops.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
                 attendees: 250,
                 tags: ["WTM", "Community", "Diversity"]
             }
@@ -89,7 +89,7 @@ const EventsPage = () => {
                 time: "9:00 AM - 6:00 PM",
                 location: "NIET Main Auditorium",
                 description: "Annual developer festival featuring cutting-edge technology talks and networking.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 300,
                 tags: ["DevFest", "Conference", "Networking"]
             },
@@ -100,7 +100,7 @@ const EventsPage = () => {
                 time: "11:00 AM - 3:00 PM",
                 location: "CS Block Lab 2, NIET",
                 description: "Hands-on workshop on Firebase and its various services.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 90,
                 tags: ["Firebase", "Cloud", "Backend"]
             },
@@ -111,7 +111,7 @@ const EventsPage = () => {
                 time: "10:00 AM - 2:00 PM",
                 location: "IT Block Seminar Hall, NIET",
                 description: "Introduction to open source contributions and Git workflow.",
-                image: "/api/placeholder/400/200",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 attendees: 150,
                 tags: ["OpenSource", "Git", "Community"]
             }

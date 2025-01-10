@@ -17,9 +17,9 @@ export default function HeroSection8() {
 
   return (
     <div className="relative bg-white">
-      <div className="flex justify-center m-10">
+      <div className="flex justify-center p-4 md:p-10">
         <motion.p
-          className="text-center text-2xl"
+          className="text-center text-base md:text-lg lg:text-2xl leading-relaxed md:leading-loose"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
@@ -36,19 +36,19 @@ export default function HeroSection8() {
           leading events and projects. Join us to learn, grow, and make an
           impact as part of a thriving tech community. Let’s shape the future of
           technology together!{" "}
-          <motion.span className="text-blue-500" whileHover={{ scale: 1.2 }}>
+          <motion.span whileHover={{ scale: 1.2 }}>
             mobile
           </motion.span>{" "}
           and{" "}
-          <motion.span className="text-blue-500" whileHover={{ scale: 1.2 }}>
+          <motion.span whileHover={{ scale: 1.2 }}>
             web development
           </motion.span>
           ,{" "}
-          <motion.span className="text-orange-500" whileHover={{ scale: 1.2 }}>
+          <motion.span whileHover={{ scale: 1.2 }}>
             design thinking
           </motion.span>{" "}
           and{" "}
-          <motion.span className="text-green-500" whileHover={{ scale: 1.2 }}>
+          <motion.span whileHover={{ scale: 1.2 }}>
             leadership skills
           </motion.span>
           .
@@ -79,21 +79,21 @@ export default function HeroSection8() {
         },
       ].map((section, index) => (
         <motion.div
-          className="items-center min-h-screen flex justify-around relative flex-wrap px-5"
+          className="flex flex-wrap items-center justify-around min-h-screen px-4 md:px-10"
           variants={sectionVariants}
           initial="initial"
           animate="animate"
           key={index}
         >
           <motion.div
-            className={`${section.bgColor} h-[362px] w-[362px] absolute rounded-full blur-[120px] filter -top-[100px] -left-20`}
+            className={`${section.bgColor} h-40 w-40 md:h-72 md:w-72 absolute rounded-full blur-[80px] filter top-[-50px] md:top-[-100px] left-5 md:left-10`}
             variants={blurVariants}
             initial="initial"
             animate="animate"
           ></motion.div>
-          <div className="max-w-xl relative">
+          <div className="relative w-full md:max-w-lg p-4">
             <motion.h1
-              className="font-IBMPlexBold text-6xl max-w-md text-left uppercase"
+              className="font-IBMPlexBold text-3xl md:text-5xl lg:text-6xl leading-snug text-left uppercase"
               variants={textVariants}
               whileHover="hover"
             >
@@ -102,7 +102,7 @@ export default function HeroSection8() {
               {section.title.split(section.highlight)[1]}
             </motion.h1>
             <motion.p
-              className="font-IBMPlexRegular text-left"
+              className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-4"
               whileHover={{ scale: 1.05 }}
             >
               A collection of 10,000 worldly Koalas each with their unique
@@ -112,14 +112,25 @@ export default function HeroSection8() {
               className="hidden md:block py-5"
               whileHover={{ scale: 1.2 }}
             >
-              <img width="50" height="50" src="/images/logo.svg" alt="" />
+              <img
+                width="50"
+                height="50"
+                className="h-12 w-12"
+                src="/images/logo.svg"
+                alt=""
+              />
             </motion.div>
           </div>
           <motion.div
+            className="w-full md:w-auto"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3 }}
           >
-            <img width="500" height="500" alt="bg-image" src={section.imgSrc} />
+            <img
+              className="w-full md:w-[400px] lg:w-[500px] h-auto mx-auto"
+              alt="bg-image"
+              src={section.imgSrc}
+            />
           </motion.div>
         </motion.div>
       ))}

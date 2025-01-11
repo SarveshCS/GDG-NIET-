@@ -16,45 +16,52 @@ export default function HeroSection8() {
   };
 
   return (
-    <div className="relative bg-white">
-      <div className="flex justify-center p-4 md:p-10">
-        <motion.p
-          className="text-center text-base md:text-lg lg:text-2xl leading-relaxed md:leading-loose"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+    <div className="relative">
+    <div className="flex justify-center p-4 md:p-6">
+      <motion.p
+        className="text-center text-base md:text-lg lg:text-2xl leading-relaxed md:leading-loose font-light text-gray-800"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+        <strong className="font-semibold text-indigo-700">
+          GDG On Campus - NIET
+        </strong>
+        aims to foster a <span className="text-blue-600 font-bold">strong and inclusive development culture</span>. 
+        This initiative encourages students to{" "}
+        <span className="text-pink-500 font-bold">collaborate, learn, and innovate</span> 
+        in a supportive environment. <br />
+        Developer Student Clubs (DSC) is a program designed to help students gain essential skills in{" "}
+        <motion.span
+          whileHover={{ scale: 1.2, color: "#FF5722" }}
+          className="text-orange-600 font-semibold"
         >
-          Through GDG On Campus - NIET, we, as Developers and Designers, aim to
-          foster a strong and inclusive development culture. This initiative
-          encourages students to collaborate, learn, and innovate in a
-          supportive environment. Developer Student Clubs (DSC) is a program
-          designed to help students gain essential skills in mobile and web
-          development, design thinking, and leadership. Through workshops,
-          hands-on projects, and networking opportunities, students can: Enhance
-          technical expertise in app and web development. Apply design thinking
-          to solve real-world problems. Build teamwork and leadership skills by
-          leading events and projects. Join us to learn, grow, and make an
-          impact as part of a thriving tech community. Let’s shape the future of
-          technology together!{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
-            mobile
-          </motion.span>{" "}
-          and{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
-            web development
-          </motion.span>
-          ,{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
-            design thinking
-          </motion.span>{" "}
-          and{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
-            leadership skills
-          </motion.span>
-          .
-        </motion.p>
-      </div>
-
+          mobile
+        </motion.span>{" "}
+        and{" "}
+        <motion.span
+          whileHover={{ scale: 1.2, color: "#FF5722" }}
+          className="text-orange-600 font-semibold"
+        >
+          web development
+        </motion.span>
+        ,{" "}
+        <motion.span
+          whileHover={{ scale: 1.2, color: "#009688" }}
+          className="text-green-600 font-semibold"
+        >
+          design thinking
+        </motion.span>{" "}
+        and{" "}
+        <motion.span
+          whileHover={{ scale: 1.2, color: "#3F51B5" }}
+          className="text-blue-700 font-semibold"
+        >
+          leadership skills
+        </motion.span>
+        . Join us to <span className="font-bold text-purple-600">shape the future of technology</span> together!
+      </motion.p>
+    </div>
       {[
         {
           title: "Community of 800+ Developers",
@@ -79,7 +86,7 @@ export default function HeroSection8() {
         },
       ].map((section, index) => (
         <motion.div
-          className="flex flex-wrap items-center justify-around min-h-screen px-4 md:px-10"
+          className="flex flex-wrap items-center justify-around space-y-24 px-4 md:px-6"
           variants={sectionVariants}
           initial="initial"
           animate="animate"
@@ -91,7 +98,7 @@ export default function HeroSection8() {
             initial="initial"
             animate="animate"
           ></motion.div>
-          <div className="relative w-full md:max-w-lg p-4">
+          <div className="relative w-full md:max-w-lg p-2">
             <motion.h1
               className="font-IBMPlexBold text-3xl md:text-5xl lg:text-6xl leading-snug text-left uppercase"
               variants={textVariants}
@@ -102,14 +109,14 @@ export default function HeroSection8() {
               {section.title.split(section.highlight)[1]}
             </motion.h1>
             <motion.p
-              className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-4"
+              className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2"
               whileHover={{ scale: 1.05 }}
             >
               A collection of 10,000 worldly Koalas each with their unique
               skillsets. Their mission is to protect the world from evil.
             </motion.p>
             <motion.div
-              className="hidden md:block py-5"
+              className="hidden md:block py-3"
               whileHover={{ scale: 1.2 }}
             >
               <img

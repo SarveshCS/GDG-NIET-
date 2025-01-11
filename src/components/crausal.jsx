@@ -94,7 +94,7 @@ const EventCarousel = () => {
   const visibleEvents = events.slice(startIndex, startIndex + itemsToShow);
 
   return (
-    <div className="relative bg-white py-8 overflow-hidden max-w-full">
+    <div className="relative bg-white space-y-20 overflow-hidden max-w-full">
       <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-30 scale-110 transition-all duration-1000"

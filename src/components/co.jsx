@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function HeroSection8() {
   const sectionVariants = {
@@ -15,48 +16,101 @@ export default function HeroSection8() {
     animate: { scale: 1, opacity: 0.75, transition: { duration: 1.5 } },
   };
 
+  const scrollToSection = (sectionRef) => {
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const sectionRefs = {
+    community: useRef(null),
+    students: useRef(null),
+    influence: useRef(null),
+  };
+
   return (
-    <div className="relative bg-white">
-      <div className="flex justify-center p-4 md:p-10">
+    <div className="relative">
+      {/* Intro Section */}
+      <div className="flex justify-center p-4 md:p-6">
         <motion.p
-          className="text-center text-base md:text-lg lg:text-2xl leading-relaxed md:leading-loose"
+          className="text-center text-base md:text-lg lg:text-2xl leading-relaxed md:leading-loose font-light text-gray-800"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
         >
-          Through GDG On Campus - NIET, we, as Developers and Designers, aim to
-          foster a strong and inclusive development culture. This initiative
-          encourages students to collaborate, learn, and innovate in a
-          supportive environment. Developer Student Clubs (DSC) is a program
-          designed to help students gain essential skills in mobile and web
-          development, design thinking, and leadership. Through workshops,
-          hands-on projects, and networking opportunities, students can: Enhance
-          technical expertise in app and web development. Apply design thinking
-          to solve real-world problems. Build teamwork and leadership skills by
-          leading events and projects. Join us to learn, grow, and make an
-          impact as part of a thriving tech community. Let’s shape the future of
-          technology together!{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
+          <strong className="font-semibold text-indigo-700">
+            GDG On Campus - NIET
+          </strong>
+          aims to foster a{" "}
+          <span className="text-blue-600 font-bold">
+            strong and inclusive development culture
+          </span>
+          . This initiative encourages students to{" "}
+          <span className="text-pink-500 font-bold">
+            collaborate, learn, and innovate
+          </span>{" "}
+          in a supportive environment. <br />
+          Developer Student Clubs (DSC) is a program designed to help students
+          gain essential skills in{" "}
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#FF5722" }}
+            className="text-orange-600 font-semibold"
+          >
             mobile
           </motion.span>{" "}
           and{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#FF5722" }}
+            className="text-orange-600 font-semibold"
+          >
             web development
           </motion.span>
           ,{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#009688" }}
+            className="text-green-600 font-semibold"
+          >
             design thinking
           </motion.span>{" "}
           and{" "}
-          <motion.span whileHover={{ scale: 1.2 }}>
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#3F51B5" }}
+            className="text-blue-700 font-semibold"
+          >
             leadership skills
           </motion.span>
-          .
+          . Join us to{" "}
+          <span className="font-bold text-purple-600">
+            shape the future of technology
+          </span>{" "}
+          together!
         </motion.p>
       </div>
 
+      {/* Scroll Buttons */}
+      <div className="flex justify-center space-x-4 mt-12">
+        <button
+          className="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800"
+          onClick={() => scrollToSection(sectionRefs.community)}
+        >
+          Community
+        </button>
+        <button
+          className="px-6 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800"
+          onClick={() => scrollToSection(sectionRefs.students)}
+        >
+          Students
+        </button>
+        <button
+          className="px-6 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800"
+          onClick={() => scrollToSection(sectionRefs.influence)}
+        >
+          Influence
+        </button>
+      </div>
+
+      {/* Sections */}
       {[
         {
+          ref: sectionRefs.community,
           title: "Community of 800+ Developers",
           highlight: "800+",
           color: "#c10202",
@@ -64,6 +118,7 @@ export default function HeroSection8() {
           imgSrc: "/images/il1.svg",
         },
         {
+          ref: sectionRefs.students,
           title: "More Than 2000+ Students Influenced",
           highlight: "2000+",
           color: "#02C173",
@@ -71,6 +126,7 @@ export default function HeroSection8() {
           imgSrc: "/images/il2.svg",
         },
         {
+          ref: sectionRefs.influence,
           title: "Influential In 140 Countries",
           highlight: "140",
           color: "#0238c1",
@@ -79,10 +135,12 @@ export default function HeroSection8() {
         },
       ].map((section, index) => (
         <motion.div
-          className="flex flex-wrap items-center justify-around min-h-screen px-4 md:px-10"
+          ref={section.ref}
+          className="flex flex-wrap items-center justify-around space-y-28"
           variants={sectionVariants}
           initial="initial"
-          animate="animate"
+          whileInView="animate"
+          viewport={{ once: true }}
           key={index}
         >
           <motion.div
@@ -91,7 +149,7 @@ export default function HeroSection8() {
             initial="initial"
             animate="animate"
           ></motion.div>
-          <div className="relative w-full md:max-w-lg p-4">
+          <div className="relative w-full md:max-w-lg p-2">
             <motion.h1
               className="font-IBMPlexBold text-3xl md:text-5xl lg:text-6xl leading-snug text-left uppercase"
               variants={textVariants}
@@ -102,24 +160,12 @@ export default function HeroSection8() {
               {section.title.split(section.highlight)[1]}
             </motion.h1>
             <motion.p
-              className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-4"
+              className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2"
               whileHover={{ scale: 1.05 }}
             >
               A collection of 10,000 worldly Koalas each with their unique
               skillsets. Their mission is to protect the world from evil.
             </motion.p>
-            <motion.div
-              className="hidden md:block py-5"
-              whileHover={{ scale: 1.2 }}
-            >
-              <img
-                width="50"
-                height="50"
-                className="h-12 w-12"
-                src="/images/logo.svg"
-                alt=""
-              />
-            </motion.div>
           </div>
           <motion.div
             className="w-full md:w-auto"

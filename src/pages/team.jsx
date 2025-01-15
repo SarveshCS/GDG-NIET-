@@ -10,6 +10,38 @@ import { FaInstagram } from "react-icons/fa";
 const TeamPage = () => {
   const teamMembers = [
     {
+      name: "Vanshika Pandey",
+      role: "GDG Lead",
+      image: "23.png",
+      linkedin: "https://www.linkedin.com/in/vanshika-pandey369/",
+      github: <FaGithub />,
+      insta: "https://instagram.com/mohit",
+    },
+    {
+      name: "Ankit Raj",
+      role: "GDG Co-Lead",
+      image: "17.png",
+      linkedin: "https://www.linkedin.com/in/ankitrpathak/",
+      github: <FaGithub />,
+      insta: "https://instagram.com/arjun",
+    },
+    {
+      name: "Toshak Bhat",
+      role: "GDG Co-Lead",
+      image: "3.png",
+      linkedin: "https://www.linkedin.com/in/toshakbhat",
+      github: <FaGithub />,
+      insta: "https://instagram.com/neha",
+    },
+    {
+      name: "Pihu Gupta",
+      role: "Director Of Operations",
+      image: "10.png",
+      linkedin: "https://www.linkedin.com/in/pihu-gupta-750435280",
+      github: <FaGithub />,
+      insta: "https://instagram.com/siddharth",
+    },
+    {
       name: "Vivek Tripathi",
       role: "Technical Team Organizer",
       image: "1.png",
@@ -26,20 +58,20 @@ const TeamPage = () => {
       insta: "https://instagram.com/rajesh",
     },
     {
-      name: "Toshak Bhat",
-      role: "GDG Co-Lead",
-      image: "3.png",
-      linkedin: "https://www.linkedin.com/in/toshakbhat",
-      github: <FaGithub />,
-      insta: "https://instagram.com/neha",
-    },
-    {
       name: "Tarun Gupta",
       role: "Technical Team",
       image: "4.png",
       linkedin: "https://www.linkedin.com/in/tarun-gupta-44888b250",
       github: <FaGithub />,
       insta: "https://instagram.com/vikas",
+    },
+    {
+      name: "Anubhav Singh",
+      role: "Technical Team",
+      image: "14.png",
+      linkedin: "https://www.linkedin.com/in/anubhav-singh99/",
+      github: <FaGithub />,
+      insta: "https://instagram.com/shruti",
     },
     {
       name: "Suryansh Gupta",
@@ -82,14 +114,6 @@ const TeamPage = () => {
       insta: "https://instagram.com/meera",
     },
     {
-      name: "Pihu Gupta",
-      role: "Director Of Operations",
-      image: "10.png",
-      linkedin: "https://www.linkedin.com/in/pihu-gupta-750435280",
-      github: <FaGithub />,
-      insta: "https://instagram.com/siddharth",
-    },
-    {
       name: "Manasvi Goel",
       role: "Design Team",
       image: "11.png",
@@ -114,14 +138,6 @@ const TeamPage = () => {
       insta: "https://instagram.com/nikhil",
     },
     {
-      name: "Anubhav Singh",
-      role: "Technical Team",
-      image: "14.png",
-      linkedin: "https://www.linkedin.com/in/anubhav-singh99/",
-      github: <FaGithub />,
-      insta: "https://instagram.com/shruti",
-    },
-    {
       name: "Dev Goyal",
       role: "Social Media Head",
       image: "15.png",
@@ -136,14 +152,6 @@ const TeamPage = () => {
       linkedin: "https://www.linkedin.com/in/arshia-talwar-151a9a258",
       github: <FaGithub />,
       insta: "https://instagram.com/ishita",
-    },
-    {
-      name: "Ankit Raj",
-      role: "GDG Co-Lead",
-      image: "17.png",
-      linkedin: "https://www.linkedin.com/in/ankitrpathak/",
-      github: <FaGithub />,
-      insta: "https://instagram.com/arjun",
     },
     {
       name: "Amit Kumar Mishra",
@@ -184,14 +192,6 @@ const TeamPage = () => {
       linkedin: "https://www.linkedin.com/in/ansh-pratap-93083133b",
       github: <FaGithub />,
       insta: "https://instagram.com/sneha",
-    },
-    {
-      name: "Vanshika Pandey",
-      role: "GDG Lead",
-      image: "23.png",
-      linkedin: "https://www.linkedin.com/in/vanshika-pandey369/",
-      github: <FaGithub />,
-      insta: "https://instagram.com/mohit",
     },
     {
       name: "Abhinav Maurya",

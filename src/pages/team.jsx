@@ -7,7 +7,8 @@ import { FaGithub } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 
-const TeamPage = () => [
+const TeamPage = () => {
+  const teamMembers = [
     {
       name: "Vanshika Pandey",
       role: "GDG Lead",

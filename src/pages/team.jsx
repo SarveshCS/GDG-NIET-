@@ -53,7 +53,7 @@ const TeamPage = () => {
       github: null,
       insta: "https://www.instagram.com/unapologetically_uhip",
       x: "https://x.com/Pihugupta1500",
-      tagline: "No",
+      tagline: null,
     },
     {
       name: "Rishi Ranjan",
@@ -163,7 +163,7 @@ const TeamPage = () => {
       github: null,
       insta: null,
       x: null,
-      tagline: "no tagline",
+      tagline: null,
     },
     {
       name: "Suryansh Gupta",
@@ -341,7 +341,7 @@ const TeamPage = () => {
                       "color 0.3s ease, font-weight 0.3s ease, transform 0.3s ease",
                   }}
                 >
-                  {member.tagline}
+                  {member.tagline ? member.tagline : " "}
                 </motion.p>
                 <div className="flex space-x-4 mt-4">
                   {member.linkedin && (

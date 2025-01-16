@@ -1,16 +1,22 @@
-import React from "react";
-import Navbar from "../components/navbar";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import Footer2 from "@/components/footer";
-import { FaGithub } from "react-icons/fa";
+import Navbar from "../components/navbar";
+import Footer2 from "../components/footer";
 import { CiLinkedin } from "react-icons/ci";
-import { FaInstagram } from "react-icons/fa";
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
+const gradients = [
+  ["from-green-600", "to-green-300"],
+  ["from-yellow-600", "to-yellow-300"],
+  ["from-red-600", "to-red-300"],
+  ["from-blue-600", "to-blue-300"],
+];
 
 const TeamPage = () => {
   const teamMembers = [
     {
-      name: "Vanshika pandey",
+      name: "Anusha Tiwari",
       role: "GDSC Lead",
       image: "1.png",
       linkedin: "https://www.linkedin.com/in/anusha",
@@ -18,31 +24,33 @@ const TeamPage = () => {
       insta: "https://instagram.com/anusha",
     },
     {
-      name: "Toshak Bhatt",
-      role: " GDSC Co Lead",
+      name: "Rajesh Kumar",
+      role: "Core Member",
       image: "2.png",
       linkedin: "https://www.linkedin.com/in/rajesh",
       github: <FaGithub />,
       insta: "https://instagram.com/rajesh",
     },
     {
-      name: "Anubhav Singh ",
-      role: "Technical Team Member",
+      name: "Neha Sharma",
+      role: "Event Coordinator",
       image: "3.png",
-      linkedin: "https://www.linkedin.com/in/neha",
-      github: <FaGithub />,
-      insta: "https://instagram.com/neha",
+      linkedin: "https://www.linkedin.com/in/toshakbhat",
+      github: null,
+      insta: "https://www.instagram.com/bhatsaab04",
+      x: "https://x.com/ToshakBhat",
+      tagline: "WYSIWYG",
     },
     {
-      name: "Tarun gupta",
-      role: "Technical Team Member",
+      name: "Vikas Mehta",
+      role: "Technical Lead",
       image: "4.png",
       linkedin: "https://www.linkedin.com/in/vikas",
       github: <FaGithub />,
       insta: "https://instagram.com/vikas",
     },
     {
-      name: "Aditya Kumar Jha",
+      name: "Priya Singh",
       role: "Marketing Head",
       image: "5.png",
       linkedin: "https://www.linkedin.com/in/priya",
@@ -50,156 +58,193 @@ const TeamPage = () => {
       insta: "https://instagram.com/priya",
     },
     {
-      name: "Sarvesh Mishra",
-      role: "Event Management Cordinator",
+      name: "Amit Patel",
+      role: "Graphic Designer",
       image: "6.png",
       linkedin: "https://www.linkedin.com/in/amit",
       github: <FaGithub />,
       insta: "https://instagram.com/amit",
     },
     {
-      name: "Riya Kapoor",
-      role: "Social Media Manager",
-      image: "7.png",
-      linkedin: "https://www.linkedin.com/in/riya",
-      github: <FaGithub />,
-      insta: "https://instagram.com/riya",
-    },
-    {
-      name: "Karan Gupta",
-      role: "Content Creator",
-      image: "8.png",
-      linkedin: "https://www.linkedin.com/in/karan",
-      github: <FaGithub />,
-      insta: "https://instagram.com/karan",
-    },
-    {
-      name: "Meera Jain",
-      role: "Outreach Lead",
-      image: "9.png",
-      linkedin: "https://www.linkedin.com/in/meera",
-      github: <FaGithub />,
-      insta: "https://instagram.com/meera",
-    },
-    {
-      name: "Siddharth Verma",
-      role: "DevOps Specialist",
-      image: "10.png",
-      linkedin: "https://www.linkedin.com/in/siddharth",
-      github: <FaGithub />,
-      insta: "https://instagram.com/siddharth",
-    },
-    {
-      name: "Alok Yadav",
-      role: "Backend Developer",
-      image: "11.png",
-      linkedin: "https://www.linkedin.com/in/alok",
-      github: <FaGithub />,
-      insta: "https://instagram.com/alok",
-    },
-    {
-      name: "Pooja Raj",
-      role: "Frontend Developer",
-      image: "12.png",
-      linkedin: "https://www.linkedin.com/in/pooja",
-      github: <FaGithub />,
-      insta: "https://instagram.com/pooja",
-    },
-    {
-      name: "Nikhil Das",
-      role: "UI/UX Designer",
-      image: "13.png",
-      linkedin: "https://www.linkedin.com/in/nikhil",
-      github: <FaGithub />,
-      insta: "https://instagram.com/nikhil",
-    },
-    {
-      name: "Shruti Chawla",
-      role: "Project Manager",
-      image: "14.png",
-      linkedin: "https://www.linkedin.com/in/shruti",
-      github: <FaGithub />,
-      insta: "https://instagram.com/shruti",
-    },
-    {
-      name: "Rohan Bansal",
-      role: "AI/ML Specialist",
+      name: "Dev Goyal",
+      role: "Social Media Head",
       image: "15.png",
-      linkedin: "https://www.linkedin.com/in/rohan",
-      github: <FaGithub />,
-      insta: "https://instagram.com/rohan",
+      linkedin: "https://www.linkedin.com/in/devgoyalg/",
+      github: null,
+      insta: "https://www.instagram.com/dev_goyal_g",
+      x: "https://x.com/dev_goyal_g",
+      tagline: "Frontend Developer & DSA Enthusiast :)",
     },
     {
-      name: "Ishita Aggarwal",
-      role: "Blockchain Developer",
+      name: "Vaishnavi Sharma",
+      role: "Design Head",
+      image: "2.png",
+      linkedin: "https://www.linkedin.com/in/vaishnavish05",
+      github: null,
+      insta: "https://www.instagram.com/Vaishnavi_sh05",
+      x: "https://x.com/Vaishnavi_sh05",
+      tagline: "If it’s not aesthetic, it’s not perfect",
+    },
+    {
+      name: "Arshia Talwar",
+      role: "Design Head",
       image: "16.png",
-      linkedin: "https://www.linkedin.com/in/ishita",
-      github: <FaGithub />,
-      insta: "https://instagram.com/ishita",
+      linkedin: "https://www.linkedin.com/in/arshia-talwar-151a9a258",
+      github: null,
+      insta: "https://www.instagram.com/arshia-talwar",
+      x: null,
+      tagline: "Engineering Creativity, Designing Possibilities",
     },
     {
-      name: "Arjun Sen",
-      role: "Full Stack Developer",
-      image: "17.png",
-      linkedin: "https://www.linkedin.com/in/arjun",
-      github: <FaGithub />,
-      insta: "https://instagram.com/arjun",
-    },
-    {
-      name: "Sanya Gupta",
-      role: "Cybersecurity Analyst",
-      image: "18.png",
-      linkedin: "https://www.linkedin.com/in/sanya",
-      github: <FaGithub />,
-      insta: "https://instagram.com/sanya",
-    },
-    {
-      name: "Raghav Tandon",
-      role: "Database Administrator",
+      name: "Aman Sahi",
+      role: "Technical Team",
       image: "19.png",
-      linkedin: "https://www.linkedin.com/in/raghav",
-      github: <FaGithub />,
-      insta: "https://instagram.com/raghav",
+      linkedin: "https://www.linkedin.com/in/aman-sahi-19a106285/",
+      github: null,
+      insta: "https://www.instagram.com/its_aman._21",
+      x: "https://x.com/Srivastava14597",
+      tagline: "Web Developer Turning Code Into Connection",
     },
     {
-      name: "Kanika Mathur",
-      role: "Quality Assurance",
-      image: "20.png",
-      linkedin: "https://www.linkedin.com/in/kanika",
-      github: <FaGithub />,
-      insta: "https://instagram.com/kanika",
+      name: "Amit Kumar Mishra",
+      role: "Technical Team",
+      image: "18.png",
+      linkedin: "https://www.linkedin.com/in/amit-mishra-330aa2251/",
+      github: null,
+      insta: null,
+      x: "https://x.com/Akm9508",
+      tagline: "Learning to solve problems with code and logic",
     },
     {
-      name: "Harshdeep Singh",
-      role: "Mobile App Developer",
-      image: "21.png",
-      linkedin: "https://www.linkedin.com/in/harshdeep",
-      github: <FaGithub />,
-      insta: "https://instagram.com/harshdeep",
+      name: "Anubhav Singh",
+      role: "Technical Team",
+      image: "14.png",
+      linkedin: "https://www.linkedin.com/in/anubhav-singh99/",
+      github: "https://github.com/AnubhavSingh99",
+      insta: "https://www.instagram.com/anu.bhav_pvtt",
+      x: "https://x.com/Anubhavsingh99x",
+      tagline: "You know what that is? Simply lovely",
     },
     {
-      name: "Sneha Roy",
-      role: "Community Manager",
-      image: "22.png",
-      linkedin: "https://www.linkedin.com/in/sneha",
-      github: <FaGithub />,
-      insta: "https://instagram.com/sneha",
+      name: "Dhruv Gupta",
+      role: "Technical Team",
+      image: "13.png",
+      linkedin: "https://www.linkedin.com/in/dhruv-gupta-16g",
+      github: null,
+      insta: "https://www.instagram.com/dhruv_.gupta_16",
+      x: "https://x.com/DhruvG__",
+      tagline: "Driven by curiosity, learning, and meaningful connections.",
     },
     {
-      name: "Mohit Sharma",
-      role: "Tech Speaker",
-      image: "23.png",
-      linkedin: "https://www.linkedin.com/in/mohit",
-      github: <FaGithub />,
-      insta: "https://instagram.com/mohit",
+      name: "Sarvesh Mishra",
+      role: "Technical Team",
+      image: "7.png",
+      linkedin: "https://www.linkedin.com/in/sarveshji/",
+      github: "https://github.com/SarveshCS",
+      insta: "https://www.instagram.com/sarveshmishra.py/",
+      x: "https://x.com/sarvesh_aham",
+      tagline: "Transforming curiosity into code, and code into change.",
     },
     {
-      name: "Aarav Joshi",
-      role: "Strategist",
+      name: "Shubhankar Nath",
+      role: "Technical Team",
+      image: "6.png",
+      linkedin: "https://www.linkedin.com/in/shubhankar-nath-ab8549265/",
+      github: null,
+      insta: null,
+      x: null,
+      tagline: null,
+    },
+    {
+      name: "Suryansh Gupta",
+      role: "Technical Team",
+      image: "5.png",
+      linkedin: "www.linkedin.com/in/suryanshgupta483",
+      github: null,
+      insta: "https://www.instagram.com/__suryanshgupta___",
+      x: "https://x.com/Suryans11676947",
+      tagline:
+        "Eager to learn, grounded in my roots, and determined to do better every day.",
+    },
+    {
+      name: "Tarun Gupta",
+      role: "Technical Team",
+      image: "4.png",
+      linkedin: "https://www.linkedin.com/in/tarun-gupta-44888b250",
+      github: null,
+      insta: null,
+      x: null,
+      tagline: "Focus on yourself",
+    },
+    {
+      name: "Abhinav Maurya",
+      role: "Design Team",
       image: "24.png",
-      linkedin: "https://www.linkedin.com/in/aarav",
-      github: <FaGithub />,
-      insta: "https://instagram.com/aarav",
+      linkedin: "https://www.linkedin.com/in/abhinav-maurya-356136315",
+      github: null,
+      insta: "https://www.instagram.com/maur_yaabhinav",
+      x: null,
+      tagline: "Elevating creativity, enhancing brands",
+    },
+    {
+      name: "Ansh Pratap",
+      role: "Design Team",
+      image: "22.png",
+      linkedin: "https://www.linkedin.com/in/ansh-pratap-93083133b",
+      github: null,
+      insta: "https://www.instagram.com/itxansh._create",
+      x: "https://x.com/4nssh",
+      tagline: "Precision in every pixel",
+    },
+    {
+      name: "Kapil Singh",
+      role: "Design Team",
+      image: "12.png",
+      linkedin: "https://www.linkedin.com/in/kapil-singh-8a6574203",
+      github: null,
+      insta: "https://www.instagram.com/ksbhati0471",
+      x: "https://x.com/Kapil4227307",
+      tagline: "The epitome of video editing",
+    },
+    {
+      name: "Manasvi Goel",
+      role: "Design Team",
+      image: "11.png",
+      linkedin: "www.linkedin.com/in/manasvigl",
+      github: null,
+      insta: "https://www.instagram.com/manasvi.gl",
+      x: "https://x.com/manasvi_gl",
+      tagline: "Coding the Dream, Designing the Reality",
+    },
+    {
+      name: "Aditya Kumar Jha",
+      role: "Event Management",
+      image: "21.png",
+      linkedin: "https://in.linkedin.com/in/adityajha12",
+      github: null,
+      insta: "https://www.instagram.com/a_d_i_t_y_a_00_3",
+      x: null,
+      tagline: "Jada bolne wala insaan",
+    },
+    {
+      name: "Aman Bajpai",
+      role: "Event Management",
+      image: "20.png",
+      linkedin: "https://www.linkedin.com/in/aman-bajpai-651a87266",
+      github: null,
+      insta: "https://www.instagram.com/_aman_pandit_28",
+      x: "https://x.com/AmanBaj26559642",
+      tagline: "Wanderer with a Restless Soul.",
+    },
+    {
+      name: "Mansi Pandey",
+      role: "Event Management",
+      image: "9.png",
+      linkedin: "https://www.linkedin.com/in/mansi-pandey-50766526b/",
+      github: null,
+      insta: "https://www.instagram.com/mansiiiiiii._p",
+      x: "https://x.com/Mansi_Pandey24",
+      tagline: "Your vision, our expertise—together we create magic",
     },
   ];
 
@@ -213,63 +258,130 @@ const TeamPage = () => {
           Meet the Dream Team Behind the Magic!
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 px-4 md:px-8">
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={index}
-              className={`relative bg-green-500 bg-opacity-0 rounded-lg p-10 flex flex-col items-center overflow-hidden shadow-md transition-all duration-300 ease-in-out transform ${
-                hoveredIndex === index ? "bg-opacity-100" : ""
-              }`}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
-              }}
-              whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.5, delay: index * 0.1 },
-              }}
-            >
-              <motion.img
-                src={`/images/${member.image}`}
-                alt={member.name}
-                className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full mb-3 transition-all duration-300 ${
-                  hoveredIndex === index ? "rounded-lg scale-110" : ""
-                }`}
-              />
-              <motion.h3 className="text-lg md:text-xl font-bold text-gray-800 text-center">
-                {member.name}
-              </motion.h3>
-              <motion.p className="text-sm md:text-md text-gray-600 text-center mb-4">
-                {member.role}
-              </motion.p>
-              <div className="flex space-x-4 mt-4">
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
+          {teamMembers.map((member, index) => {
+            const gradient = gradients[index % gradients.length];
+            return (
+              <motion.div
+                key={index}
+                className="relative rounded-lg p-10 flex flex-col items-center overflow-hidden shadow-md transform transition-all duration-300 ease-in-out"
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+                }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  transition: { duration: 0.5, delay: index * 0.1 },
+                }}
+              >
+                <motion.div
+                  className={`absolute inset-0 bg-gradient-to-t ${gradient[0]} ${gradient[1]} transition-opacity duration-500`}
+                  style={{
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    zIndex: -1,
+                  }}
+                ></motion.div>
+                <motion.img
+                  src={`/images/${member.image}`}
+                  alt={member.name}
+                  className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mb-3 transition-transform duration-300 ${
+                    hoveredIndex === index ? "scale-110" : ""
+                  }`}
+                  style={{
+                    borderRadius: hoveredIndex === index ? "0.5rem" : "50%",
+                    transition: "transform 0.3s ease, border-radius 0.3s ease",
+                  }}
+                />
+                <motion.h3 className="text-lg md:text-xl font-bold text-gray-800 text-center">
+                  {member.name}
+                </motion.h3>
+                <motion.p
+                  className={`text-sm md:text-md text-center mb-4 transition-colors duration-300 ${
+                    hoveredIndex === index ? "text-gray-900" : "text-gray-600"
+                  }`}
+                  style={{
+                    textShadow:
+                      hoveredIndex === index
+                        ? "1px 1px 2px rgba(0, 0, 0, 0.2)"
+                        : "none",
+                  }}
                 >
-                  <CiLinkedin className="w-7 h-7 text-blue-600 hover:text-white transition" />
-                </a>
-                <a
-                  href={member.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {member.role}
+                </motion.p>
+                <motion.p
+                  className={`text-xs md:text-sm text-center mb-4 text-gray-500 flex items-center justify-center transition-all duration-300 ${
+                    hoveredIndex === index
+                      ? "text-gray-900 font-semibold scale-105"
+                      : "text-gray-500"
+                  }`}
+                  style={{
+                    lineHeight: "1.25rem",
+                    height: "3rem",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    padding: "0.25rem",
+                    borderRadius: "0.25rem",
+                    transition:
+                      "color 0.3s ease, font-weight 0.3s ease, transform 0.3s ease",
+                  }}
                 >
-                  <FaGithub className="w-7 h-7 text-black hover:text-gray-600 transition" />
-                </a>
-                <a
-                  href={member.insta}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaInstagram className="w-7 h-7 text-red-500 hover:text-white transition" />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  {member.tagline ? member.tagline : " "}
+                </motion.p>
+                <div className="flex space-x-4 mt-4">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 hover:bg-blue-200 transition-transform transform hover:scale-110 shadow-md">
+                        <CiLinkedin className="w-6 h-6 text-blue-600" />
+                      </div>
+                    </a>
+                  )}
+                  {member.github && (
+                    <a
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-transform transform hover:scale-110 shadow-md">
+                        <FaGithub className="w-6 h-6 text-gray-800" />
+                      </div>
+                    </a>
+                  )}
+                  {member.insta && (
+                    <a
+                      href={member.insta}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-red-100 hover:bg-red-200 transition-transform transform hover:scale-110 shadow-md">
+                        <FaInstagram className="w-6 h-6 text-red-500" />
+                      </div>
+                    </a>
+                  )}
+                  {member.x && (
+                    <a
+                      href={member.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-transform transform hover:scale-110 shadow-md">
+                        <FaXTwitter className="w-6 h-6 text-black-500" />
+                      </div>
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <Footer2 />

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { Search, Filter, Plus, Menu } from 'lucide-react'
+import React, { useState } from 'react';
+import { Search, Filter, Menu } from 'lucide-react';
 
-export default function Header({ onFilterChange, onSubmitProject, onSearch, categories }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white bg-opacity-80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200">
@@ -40,8 +40,8 @@ export default function Header({ onFilterChange, onSubmitProject, onSearch, cate
                       key={category}
                       className="block w-full text-left px-4 py-2 hover:bg-gray-100 transition"
                       onClick={() => {
-                        onFilterChange(category)
-                        setIsDropdownOpen(false)
+                        onFilterChange(category);
+                        setIsDropdownOpen(false);
                       }}
                     >
                       {category}
@@ -50,13 +50,6 @@ export default function Header({ onFilterChange, onSubmitProject, onSearch, cate
                 </div>
               )}
             </div>
-            <button
-              className="hidden md:flex items-center space-x-2 px-4 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition"
-              onClick={onSubmitProject}
-            >
-              <Plus size={20} />
-              <span>Submit Project</span>
-            </button>
             <button
               className="md:hidden flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -76,13 +69,6 @@ export default function Header({ onFilterChange, onSubmitProject, onSearch, cate
                 onChange={(e) => onSearch(e.target.value)}
               />
             </div>
-            <button
-              className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition mb-4"
-              onClick={onSubmitProject}
-            >
-              <Plus size={20} />
-              <span>Submit Project</span>
-            </button>
             <div>
               <div className="text-xs font-semibold uppercase text-gray-600 mb-2">Filter by Category</div>
               {categories.map((category) => (
@@ -90,8 +76,8 @@ export default function Header({ onFilterChange, onSubmitProject, onSearch, cate
                   key={category}
                   className="block w-full text-left py-2 hover:bg-gray-100 transition"
                   onClick={() => {
-                    onFilterChange(category)
-                    setIsMobileMenuOpen(false)
+                    onFilterChange(category);
+                    setIsMobileMenuOpen(false);
                   }}
                 >
                   {category}
@@ -102,6 +88,7 @@ export default function Header({ onFilterChange, onSubmitProject, onSearch, cate
         )}
       </div>
     </header>
-  )
-}
+  );
+};
 
+export default Header;

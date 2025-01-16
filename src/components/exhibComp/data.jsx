@@ -54,7 +54,7 @@ export const demoProjects = [
     title: 'AI-Powered Smart City Solution',
     description: 'An innovative project leveraging AI to optimize urban infrastructure.',
     longDescription: 'An innovative project leveraging AI and IoT to optimize urban infrastructure and improve city living. This comprehensive solution includes traffic management, energy optimization, and waste management systems.',
-    image: 'https://images.unsplash.com/photo-1573804013926-c6f7d62e0f62?w=800&auto=format&fit=crop&q=60',
+    image: 'https://images.unsplash.com/photo-1523287562758-66c7fc58967f?w=800&auto=format&fit=crop&q=60',
     category: ['AI/ML', 'IoT'],
     technologies: ['Python', 'TensorFlow', 'React'],
     featured: true,

@@ -133,7 +133,7 @@ const TeamPage = () => {
       github: "https://github.com/AnubhavSingh99",
       insta: "https://www.instagram.com/anu.bhav_pvtt",
       x: "https://x.com/Anubhavsingh99x",
-      tagline: "Simply Lovely",
+      tagline: "You know what that is? Simply lovely",
     },
     {
       name: "Dhruv Gupta",

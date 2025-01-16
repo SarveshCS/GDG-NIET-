@@ -10,7 +10,7 @@ import { FaInstagram } from "react-icons/fa";
 const TeamPage = () => {
   const teamMembers = [
     {
-      name: "Anusha Tiwari",
+      name: "Vanshika pandey",
       role: "GDSC Lead",
       image: "1.png",
       linkedin: "https://www.linkedin.com/in/anusha",
@@ -18,31 +18,31 @@ const TeamPage = () => {
       insta: "https://instagram.com/anusha",
     },
     {
-      name: "Rajesh Kumar",
-      role: "Core Member",
+      name: "Toshak Bhatt",
+      role: " GDSC Co Lead",
       image: "2.png",
       linkedin: "https://www.linkedin.com/in/rajesh",
       github: <FaGithub />,
       insta: "https://instagram.com/rajesh",
     },
     {
-      name: "Neha Sharma",
-      role: "Event Coordinator",
+      name: "Anubhav Singh ",
+      role: "Technical Team Member",
       image: "3.png",
       linkedin: "https://www.linkedin.com/in/neha",
       github: <FaGithub />,
       insta: "https://instagram.com/neha",
     },
     {
-      name: "Vikas Mehta",
-      role: "Technical Lead",
+      name: "Tarun gupta",
+      role: "Technical Team Member",
       image: "4.png",
       linkedin: "https://www.linkedin.com/in/vikas",
       github: <FaGithub />,
       insta: "https://instagram.com/vikas",
     },
     {
-      name: "Priya Singh",
+      name: "Aditya Kumar Jha",
       role: "Marketing Head",
       image: "5.png",
       linkedin: "https://www.linkedin.com/in/priya",
@@ -50,8 +50,8 @@ const TeamPage = () => {
       insta: "https://instagram.com/priya",
     },
     {
-      name: "Amit Patel",
-      role: "Graphic Designer",
+      name: "Sarvesh Mishra",
+      role: "Event Management Cordinator",
       image: "6.png",
       linkedin: "https://www.linkedin.com/in/amit",
       github: <FaGithub />,

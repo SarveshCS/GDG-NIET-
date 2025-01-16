@@ -131,9 +131,9 @@ const TeamPage = () => {
       image: "14.png",
       linkedin: "https://www.linkedin.com/in/anubhav-singh99/",
       github: "https://github.com/AnubhavSingh99",
-      insta: null,
-      x: null,
-      tagline: "no tagline",
+      insta: "https://www.instagram.com/anu.bhav_pvtt",
+      x: "https://x.com/Anubhavsingh99x",
+      tagline: "Simply Lovely",
     },
     {
       name: "Dhruv Gupta",

@@ -3,12 +3,11 @@ import { differenceInDays } from 'date-fns';
 import Header from '@/components/exhibComp/Header';
 import Hero from '@/components/exhibComp/Hero';
 import SubmitButtonSection from '@/components/exhibComp/SubmitButtonSection';
-import ProjectCard from '@/components/exhibComp/ProjectCard';
+import Projectshowcase from '@/components/exhibComp/ProjectShowcase';
 import FeaturedProject from '@/components/exhibComp/FeaturedProject';
 import SubmitProjectModal from '@/components/exhibComp/SubmitProjectModal';
 import Footer from '@/components/exhibComp/Footer';
 import { demoProjects, featuredProject, categories } from '@/components/exhibComp/data';
-
 
 export default function ExhibPro() {
   const [projects, setProjects] = useState(demoProjects)
@@ -73,11 +72,7 @@ export default function ExhibPro() {
           {filteredProjects.length === 0 ? (
             <p className="text-center text-xl mt-8">No projects found matching your criteria.</p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+            <Projectshowcase projects={filteredProjects} itemsPerPage={4} />
           )}
         </div>
       </main>

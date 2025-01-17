@@ -1,44 +1,64 @@
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
-import { demoProjects, featuredProject, categories } from '../data.jsx';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function ProjectShowcase() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+const Projectshowcase = ({ projects, itemsPerPage = 4 }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(projects.length / itemsPerPage);
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentProjects = projects.slice(startIndex, endIndex);
 
-  const filteredProjects = selectedCategory === 'All'
-    ? demoProjects
-    : demoProjects.filter(project => project.category.includes(selectedCategory));
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(prev => prev + 1);
+        }
+    };
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Featured Project</h2>
-        <ProjectCard project={featuredProject} />
-      </div>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Project Categories</h2>
-        <div className="flex flex-wrap gap-2">
-          {categories.map(category => (
-            <button
-              key={category}
-              className={`px-4 py-2 rounded-full ${
-                selectedCategory === category
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-800'
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(prev => prev - 1);
+        }
+    };
+
+    return (
+        <div className="w-full">
+            {/* Projects Rows */}
+            <div className="flex flex-col gap-4">
+                {currentProjects.map((project) => (
+                    <div key={project.id} className="w-full">
+                        <ProjectCard project={project} />
+                    </div>
+                ))}
+            </div>
+            
+            {/* Pagination */}
+            {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-4">
+                    <button
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
+                        className="h-8 px-2 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    
+                    <span className="text-sm text-gray-600">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    
+                    <button
+                        onClick={nextPage}
+                        disabled={currentPage === totalPages}
+                        className="h-8 px-2 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                    >
+                        <ChevronRight className="h-4 w-4" />
+                    </button>
+                </div>
+            )}
         </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map(project => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-    </div>
-  );
-}
+    );
+};
 
+export default Projectshowcase;

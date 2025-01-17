@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Hero.css';
 import Doodle from '../images/doodle ideas.png'; // Importing the image
+import Image from '../images/website.png'
 
 const Hero = () => {
   return (
     <div
       className="relative min-h-screen overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: `url(${Doodle})`, // Using the imported image
+        backgroundImage: `url(${Image})`, // Using the imported image
       }}
     >
       {/* Main Content */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Search, Filter, Menu } from 'lucide-react';
+import { Search, Filter, Menu, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -9,8 +10,14 @@ const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
     <header className="bg-white bg-opacity-80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <div className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-            Exhibition Center
+          <div className="flex items-center space-x-4">
+            <Link to='/'>
+            <Home className="text-gray-600" size={24} />
+            </Link>
+            {/* The Exhibition Center text centered */}
+            <div className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              Exhibition Center
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="hidden md:block relative">

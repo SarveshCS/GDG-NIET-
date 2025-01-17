@@ -88,6 +88,7 @@ export default function HeroSection8() {
           .
         </motion.p>
       </div>
+
       {/* Sections */}
       {[
         {

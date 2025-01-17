@@ -185,6 +185,21 @@ const EventCarousel = () => {
           </div>
         </div>
       </div>
+
+      <div className="container mx-auto mt-10 px-4 sm:px-6 lg:px-8">
+        {/* Your next component goes here */}
+        <NextComponent />
+      </div>
+    </div>
+  );
+};
+
+const NextComponent = () => {
+  return (
+    <div className="p-6 bg-gray-100 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Upcoming Events</h3>
+      {/* Add your content here */}
+      <p>Here are some upcoming events you might be interested in.</p>
     </div>
   );
 };

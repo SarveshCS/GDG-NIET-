@@ -1,18 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../Hero.css';
-import Doodle from '../images/doodle ideas.png'; // Importing the image
+import Doodle from '../images/doodle ideas.png'; // Doodle image (for desktop)
+import doodle2 from '../images/website.png'; // Mobile image
 
 const Hero = () => {
   return (
-    <div
-      className="relative min-h-screen overflow-hidden bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${Doodle})`, // Using the imported image
-      }}
-    >
+    <div className="relative min-h-screen overflow-hidden bg-cover bg-center">
       {/* Main Content */}
       <div className="relative flex min-h-screen flex-col items-center justify-center px-4 text-center z-10">
+        
+        {/* Mobile Image */}
+        <img
+          src={doodle2} 
+          alt="Hero"
+          className="block md:hidden w-full object-cover h-full"  // Show on mobile
+        />
+        
+        {/* Desktop Image */}
+        <img
+          src={Doodle}
+          alt="Hero"
+          className="hidden md:block w-full object-cover h-full"  // Show on desktop
+        />
+
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <svg

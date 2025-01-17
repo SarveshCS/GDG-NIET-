@@ -1,303 +1,373 @@
-import React, { useState } from 'react';
-import { Calendar, MapPin, Clock, Users, ChevronRight, Search } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
+import React, { useState } from "react";
+import {
+  Calendar,
+  MapPin,
+  Clock,
+  Users,
+  ChevronRight,
+  Search,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const EventsPage = () => {
-    const [selectedTab, setSelectedTab] = useState('upcoming');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedTab, setSelectedTab] = useState("upcoming");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-    const events = {
-        upcoming: [
-            {
-                id: 1,
-                title: "Flutter Forward Extended",
-                date: "December 15, 2024",
-                time: "10:00 AM - 4:00 PM",
-                location: "CS Block Auditorium, NIET",
-                description: "Join us for an exciting day of Flutter development with hands-on workshops and expert talks.",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 150,
-                tags: ["Flutter", "Mobile Dev", "Workshop"]
-            },
-            {
-                id: 2,
-                title: "Cloud Study Jam",
-                date: "January 10, 2025",
-                time: "11:00 AM - 3:00 PM",
-                location: "IT Block Seminar Hall, NIET",
-                description: "Learn about Google Cloud Platform and get hands-on experience with cloud technologies.",
-                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
-                attendees: 100,
-                tags: ["Cloud", "GCP", "DevOps"]
-            },
-            {
-                id: 3,
-                title: "Android Dev Days",
-                date: "January 25, 2025",
-                time: "10:00 AM - 5:00 PM",
-                location: "CS Block Lab 3, NIET",
-                description: "Dive deep into Android development with Kotlin and Jetpack Compose.",
-                image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 80,
-                tags: ["Android", "Kotlin", "Mobile"]
-            },
-            {
-                id: 4,
-                title: "Web Development Workshop",
-                date: "February 5, 2025",
-                time: "2:00 PM - 6:00 PM",
-                location: "Online (Virtual Event)",
-                description: "Learn modern web development using React and Next.js framework.",
-                image: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2061&q=80",
-                attendees: 200,
-                tags: ["Web Dev", "React", "Next.js"]
-            },
-            {
-                id: 5,
-                title: "Machine Learning Bootcamp",
-                date: "February 15, 2025",
-                time: "9:00 AM - 4:00 PM",
-                location: "IT Block Auditorium, NIET",
-                description: "Intensive bootcamp covering ML basics to advanced topics with TensorFlow.",
-                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 120,
-                tags: ["ML", "AI", "TensorFlow"]
-            },
-            {
-                id: 6,
-                title: "Women Techmakers",
-                date: "March 8, 2025",
-                time: "10:00 AM - 4:00 PM",
-                location: "Main Auditorium, NIET",
-                description: "Celebrating women in technology with inspiring talks and workshops.",
-                image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-                attendees: 250,
-                tags: ["WTM", "Community", "Diversity"]
-            }
-        ],
-        past: [
-            {
-                id: 7,
-                title: "DevFest 2024",
-                date: "November 5, 2024",
-                time: "9:00 AM - 6:00 PM",
-                location: "NIET Main Auditorium",
-                description: "Annual developer festival featuring cutting-edge technology talks and networking.",
-                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 300,
-                tags: ["DevFest", "Conference", "Networking"]
-            },
-            {
-                id: 8,
-                title: "Firebase Workshop",
-                date: "October 20, 2024",
-                time: "11:00 AM - 3:00 PM",
-                location: "CS Block Lab 2, NIET",
-                description: "Hands-on workshop on Firebase and its various services.",
-                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 90,
-                tags: ["Firebase", "Cloud", "Backend"]
-            },
-            {
-                id: 9,
-                title: "Hacktoberfest Kickoff",
-                date: "October 1, 2024",
-                time: "10:00 AM - 2:00 PM",
-                location: "IT Block Seminar Hall, NIET",
-                description: "Introduction to open source contributions and Git workflow.",
-                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                attendees: 150,
-                tags: ["OpenSource", "Git", "Community"]
-            }
-        ]
-    };
+  const events = {
+    upcoming: [],
+    past: [
+      {
+        id: 1,
+        title: "INNOVA 2024",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "New Delhi",
+        description:
+          "A flagship event showcasing innovation, creativity, and cutting-edge technology through student projects and workshops.",
+        image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
+        attendees: 268,
+        tags: ["Innovation", "Technology", "Exhibition", "Networking"],
+      },
+      {
+        id: 2,
+        title: "Google Women Engineers Program Cohort 6-2024",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "An initiative by Google to empower women in engineering with resources, mentorship, and networking opportunities.",
+        image:
+          "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
+        attendees: 214,
+        tags: ["WomenInTech", "Empowerment", "Networking", "Google"],
+      },
+      {
+        id: 3,
+        title: "Build With AI",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "An exciting event focused on leveraging AI technologies to build real-world applications and solutions.",
+        image: "/images/events/Build_With_AI/Build_With_AI-main.png",
+        attendees: 299,
+        tags: ["AI", "Development", "Networking", "Innovation"],
+      },
+      {
+        id: 4,
+        title: "GDG Orientation 2024-25 - Second Year",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "Orientation for second-year students to introduce them to the Google Developer Group and its activities.",
+        image:
+          "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
+        attendees: 189,
+        tags: ["Orientation", "GDG", "Networking", "Students"],
+      },
+      {
+        id: 5,
+        title: "GDG Orientation 2024-25 - First Year",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A special orientation session for first-year students to get involved with GDG and start their journey in development.",
+        image:
+          "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
+        attendees: 276,
+        tags: ["Orientation", "GDG", "FirstYear", "Networking"],
+      },
+      {
+        id: 6,
+        title: "Devfest 2023 - New Delhi",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "New Delhi",
+        description:
+          "An annual developer conference featuring talks, workshops, and networking opportunities with industry professionals.",
+        image:
+          "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
+        attendees: 254,
+        tags: ["DevFest", "Conference", "Networking", "Development"],
+      },
+      {
+        id: 7,
+        title: "Google Cloud Study Jams 2023 Swags Distribution",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A session to celebrate and distribute swag for participants who completed the Google Cloud Study Jams 2023.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
+        attendees: 182,
+        tags: ["GoogleCloud", "StudyJams", "Swags", "Networking"],
+      },
+      {
+        id: 8,
+        title: "Google Cloud Study Jams 2023",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A hands-on session exploring Google Cloud technologies and building cloud solutions.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
+        attendees: 199,
+        tags: ["GoogleCloud", "CloudTech", "Workshops", "Networking"],
+      },
+      {
+        id: 9,
+        title: "GDSC Orientation 2023-24",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "An introduction to the Google Developer Student Club (GDSC) and its community initiatives.",
+        image:
+          "/images/events/GDSC_Orientation_2023-24/GDSC_Orientation_2023-24-main.jpg",
+        attendees: 245,
+        tags: ["GDSC", "Orientation", "Networking", "Community"],
+      },
+      {
+        id: 10,
+        title: "Development for Collegiate Women in Tech",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "A session aimed at encouraging collegiate women in tech to enhance their skills and grow in the field.",
+        image:
+          "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
+        attendees: 263,
+        tags: ["WomenInTech", "Development", "Empowerment", "Networking"],
+      },
+      {
+        id: 11,
+        title: "Git and GitHub Workshop",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A practical workshop on mastering Git and GitHub to manage code repositories and collaborate effectively.",
+        image:
+          "/images/events/Git_and_GitHub_Workshop/Git_and_GitHub_Workshop-main.jpg",
+        attendees: 211,
+        tags: ["Git", "GitHub", "Workshops", "Networking"],
+      },
+      {
+        id: 12,
+        title: "Google Cloud Study Jams 2022",
+        date: "2022",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "An earlier edition of the hands-on workshop series to learn and apply Google Cloud technologies.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2022/Google_Cloud_Study_Jams_2022-main.jpg",
+        attendees: 174,
+        tags: ["GoogleCloud", "Workshops", "Learning", "Networking"],
+      },
+    ],
+  };
 
-    const EventCard = ({ event }) => (
-        <Card 
-            className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => setSelectedEvent(event)}
-        >
-            <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-48 object-cover"
-            />
-            <CardContent className="p-4">
-                <div className="space-y-3">
-                    <h3 className="text-xl font-bold line-clamp-1">{event.title}</h3>
+  const EventCard = ({ event }) => (
+    <Card
+      className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+      onClick={() => setSelectedEvent(event)}
+    >
+      <img
+        src={event.image}
+        alt={event.title}
+        className="w-full h-48 object-cover"
+      />
+      <CardContent className="p-4">
+        <div className="space-y-3">
+          <h3 className="text-xl font-bold line-clamp-1">{event.title}</h3>
 
-                    <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event.date}</span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event.time}</span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span className="line-clamp-1">{event.location}</span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event.attendees} attendees</span>
-                        </div>
-                    </div>
-
-                    <p className="text-gray-600 text-sm line-clamp-2">{event.description}</p>
-
-                    <div className="flex flex-wrap gap-1">
-                        {event.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-
-                    {selectedTab === 'upcoming' && (
-                        <button className="w-full flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
-                            Register Now
-                            <ChevronRight className="w-4 h-4" />
-                        </button>
-                    )}
-                </div>
-            </CardContent>
-        </Card>
-    );
-
-    const EventDetailsDialog = ({ event, onClose }) => (
-        <Dialog open={!!event} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>{event?.title}</DialogTitle>
-                    <DialogDescription>Event Details</DialogDescription>
-                </DialogHeader>
-                <div className="mt-4 space-y-4">
-                    <img
-                        src={event?.image}
-                        alt={event?.title}
-                        className="w-full h-48 object-cover rounded-lg"
-                    />
-                    <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event?.date}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event?.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event?.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                            <span>{event?.attendees} attendees</span>
-                        </div>
-                    </div>
-                    <p className="text-gray-600 text-sm">{event?.description}</p>
-                    <div className="flex flex-wrap gap-1">
-                        {event?.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-                    {selectedTab === 'upcoming' && (
-                        <button className="w-full flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
-                            Register Now
-                            <ChevronRight className="w-4 h-4" />
-                        </button>
-                    )}
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
-
-    const filteredEvents = events[selectedTab].filter(event =>
-        event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
-
-    return (
-        <>
-            <Navbar />
-            <div className="max-w-7xl mx-auto px-4 py-12">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold mb-4">GDG NIET Events</h1>
-                    <p className="text-xl text-gray-600">
-                        Join us for exciting tech events, workshops, and conferences
-                    </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-                    <Tabs defaultValue="upcoming" className="w-full md:w-auto">
-                        <TabsList>
-                            <TabsTrigger
-                                value="upcoming"
-                                onClick={() => setSelectedTab('upcoming')}
-                            >
-                                Upcoming Events
-                            </TabsTrigger>
-                            <TabsTrigger
-                                value="past"
-                                onClick={() => setSelectedTab('past')}
-                            >
-                                Past Events
-                            </TabsTrigger>
-                        </TabsList>
-                    </Tabs>
-
-                    <div className="relative w-full md:w-64">
-                        <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                        <Input
-                            placeholder="Search events..."
-                            className="pl-8"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredEvents.map((event) => (
-                        <EventCard key={event.id} event={event} />
-                    ))}
-                </div>
-
-                {filteredEvents.length === 0 && (
-                    <div className="text-center py-12 text-gray-500">
-                        No events found matching your search criteria.
-                    </div>
-                )}
-
-                <EventDetailsDialog 
-                    event={selectedEvent} 
-                    onClose={() => setSelectedEvent(null)} 
-                />
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event.date}</span>
             </div>
-            <Footer />
-        </>
-    );
+
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event.time}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span className="line-clamp-1">{event.location}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event.attendees} attendees</span>
+            </div>
+          </div>
+
+          <p className="text-gray-600 text-sm line-clamp-2">
+            {event.description}
+          </p>
+
+          <div className="flex flex-wrap gap-1">
+            {event.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {selectedTab === "upcoming" && (
+            <button className="w-full flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              Register Now
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  const EventDetailsDialog = ({ event, onClose }) => (
+    <Dialog open={!!event} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>{event?.title}</DialogTitle>
+          <DialogDescription>Event Details</DialogDescription>
+        </DialogHeader>
+        <div className="mt-4 space-y-4">
+          <img
+            src={event?.image}
+            alt={event?.title}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event?.date}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event?.time}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event?.location}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span>{event?.attendees} attendees</span>
+            </div>
+          </div>
+          <p className="text-gray-600 text-sm">{event?.description}</p>
+          <div className="flex flex-wrap gap-1">
+            {event?.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          {selectedTab === "upcoming" && (
+            <button className="w-full flex items-center justify-center gap-2 mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              Register Now
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+
+  const filteredEvents = events[selectedTab].filter(
+    (event) =>
+      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+  );
+
+  return (
+    <>
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">GDG NIET Events</h1>
+          <p className="text-xl text-gray-600">
+            Join us for exciting tech events, workshops, and conferences
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+          <Tabs defaultValue="upcoming" className="w-full md:w-auto">
+            <TabsList>
+              <TabsTrigger
+                value="upcoming"
+                onClick={() => setSelectedTab("upcoming")}
+              >
+                Upcoming Events
+              </TabsTrigger>
+              <TabsTrigger value="past" onClick={() => setSelectedTab("past")}>
+                Past Events
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          <div className="relative w-full md:w-64">
+            <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+            <Input
+              placeholder="Search events..."
+              className="pl-8"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+
+        {filteredEvents.length === 0 && (
+          <div className="text-center py-12 text-gray-500">
+            {searchQuery === ""
+              ? "There are no upcoming events."
+              : "No events found matching your search criteria."}
+          </div>
+        )}
+
+        <EventDetailsDialog
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+        />
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default EventsPage;
-

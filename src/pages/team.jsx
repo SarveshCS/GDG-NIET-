@@ -276,6 +276,7 @@ const TeamPage = () => {
                 className="relative rounded-lg p-10 flex flex-col items-center overflow-hidden shadow-md transform transition-all duration-300 ease-in-out"
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
+                onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",

@@ -8,7 +8,7 @@ export default function HeroSection8() {
   };
 
   const textVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.3 } },
+    hover: { scale: 1.1, color: "#ff6f61", transition: { duration: 0.3 } },
   };
 
   const blurVariants = {
@@ -37,76 +37,57 @@ export default function HeroSection8() {
           transition={{ duration: 1.5 }}
         >
           <strong className="font-semibold text-indigo-700">
-            GDG On Campus - NIET
-          </strong>
-          aims to foster a{" "}
-          <span className="text-blue-600 font-bold">
-            strong and inclusive development culture
-          </span>
-          . This initiative encourages students to{" "}
-          <span className="text-pink-500 font-bold">
-            collaborate, learn, and innovate
-          </span>{" "}
-          in a supportive environment. <br />
-          Developer Student Clubs (DSC) is a program designed to help students
-          gain essential skills in{" "}
+            This batch of the{" "}
+            <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">GDG NIET</span>
+          </strong>{" "}
+          embodies the spirit of{" "}
+          <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-500">innovation</span> and{" "}
+          <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-500">collaboration</span>. 
+          With a{" "}
           <motion.span
-            whileHover={{ scale: 1.2, color: "#FF5722" }}
-            className="text-orange-600 font-semibold"
+            whileHover={{ scale: 1.2, color: "#ff6f61" }}
+            className="text-orange-500 font-semibold"
           >
-            mobile
+            diverse array of technical skills
           </motion.span>{" "}
-          and{" "}
+          and a shared passion for{" "}
           <motion.span
-            whileHover={{ scale: 1.2, color: "#FF5722" }}
-            className="text-orange-600 font-semibold"
+            whileHover={{ scale: 1.2, color: "#4CAF50" }}
+            className="text-green-500 font-semibold"
           >
-            web development
+            technology
+          </motion.span>, 
+          we are committed to{" "}
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#FFC107" }}
+            className="text-yellow-500 font-semibold"
+          >
+            pushing the boundaries of what's possible
+          </motion.span>
+          . Our developer mindset drives us to tackle challenges with{" "}
+          <span className="text-red-500 font-bold">creativity</span> and{" "}
+          <span className="text-indigo-700 font-bold">resilience</span>, while
+          our emphasis on{" "}
+          <span className="text-teal-500 font-bold">communication</span> ensures
+          that every voice is heard and every idea is valued. Together, we are{" "}
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#8E44AD" }}
+            className="text-purple-700 font-bold"
+          >
+            not just learning
+          </motion.span>,
+          we are{" "}
+          <motion.span
+            whileHover={{ scale: 1.2, color: "#1ABC9C" }}
+            className="text-green-700 font-bold"
+          >
+            building the future
           </motion.span>
           ,{" "}
-          <motion.span
-            whileHover={{ scale: 1.2, color: "#009688" }}
-            className="text-green-600 font-semibold"
-          >
-            design thinking
-          </motion.span>{" "}
-          and{" "}
-          <motion.span
-            whileHover={{ scale: 1.2, color: "#3F51B5" }}
-            className="text-blue-700 font-semibold"
-          >
-            leadership skills
-          </motion.span>
-          . Join us to{" "}
-          <span className="font-bold text-purple-600">
-            shape the future of technology
-          </span>{" "}
-          together!
+          <span className="text-blue-800 font-bold">one line of code at a time</span>
+          .
         </motion.p>
       </div>
-
-      {/* Scroll Buttons */}
-      <div className="flex justify-center space-x-4 mt-12">
-        <button
-          className="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800"
-          onClick={() => scrollToSection(sectionRefs.community)}
-        >
-          Community
-        </button>
-        <button
-          className="px-6 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800"
-          onClick={() => scrollToSection(sectionRefs.students)}
-        >
-          Students
-        </button>
-        <button
-          className="px-6 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800"
-          onClick={() => scrollToSection(sectionRefs.influence)}
-        >
-          Influence
-        </button>
-      </div>
-
       {/* Sections */}
       {[
         {

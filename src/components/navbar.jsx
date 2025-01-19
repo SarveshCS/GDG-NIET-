@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
@@ -32,13 +35,13 @@ const Navbar = () => {
               : "hidden md:flex md:items-center md:space-x-6"
           }`}
         >
-          <NavLink to="/" onClick={toggleMenu}>
+          <NavLink to="/" isActive={isActive("/")} onClick={toggleMenu}>
             Home
           </NavLink>
-          <NavLink to="/events" onClick={toggleMenu}>
+          <NavLink to="/events" isActive={isActive("/events")} onClick={toggleMenu}>
             Events
           </NavLink>
-          <NavLink to="/team" onClick={toggleMenu}>
+          <NavLink to="/team" isActive={isActive("/team")} onClick={toggleMenu}>
             Team
           </NavLink>
           <Link
@@ -93,10 +96,14 @@ const Navbar = () => {
   );
 };
 
-const NavLink = ({ to, children, onClick }) => (
+const NavLink = ({ to, isActive, children, onClick }) => (
   <Link
     to={to}
-    className="text-gray-600 hover:text-gray-900 transition-colors text-sm md:text-base"
+    className={`text-sm md:text-base transition-colors ${
+      isActive
+        ? "text-blue-600 font-semibold"
+        : "text-gray-600 hover:text-gray-900"
+    }`}
     onClick={onClick}
   >
     {children}

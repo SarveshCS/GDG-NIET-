@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-cover bg-center">
       {/* Main Content */}
-      <div className="relative flex min-h-screen flex-col items-center justify-center px-4 text-center z-10">
+      <div className="relative flex min-h-screen flex-col items-center justify-center text-center z-10">
         
         {/* Mobile Image */}
         <img

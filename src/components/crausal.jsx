@@ -10,40 +10,40 @@ import {
 const events = [
   {
     image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
-},
-{
-    image: "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
-},
-{
-    image: "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
-},
-{
-    image: "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
-},
-{
-    image: "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
-},
-{
-    image: "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
-},
-{
-    image: "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
-},
-{
-    image: "/images/events/GDSC_Orientation_2023-24/GDSC_Orientation_2023-24-main.jpg",
-},
-{
-    image: "/images/events/Google_Cloud_Study_Jams_2022/Google_Cloud_Study_Jams_2022-main.jpg",
-},
-{
-    image: "/images/events/Build_With_AI/Build_With_AI-main.png",
-},
-{
-    image: "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
-},
-{
-    image: "/images/events/Git_and_GitHub_Workshop/Git_and_GitHub_Workshop-main.jpg",
-},
+  },
+  {
+      image: "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
+  },
+  {
+      image: "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
+  },
+  {
+      image: "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
+  },
+  {
+      image: "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
+  },
+  {
+      image: "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
+  },
+  {
+      image: "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
+  },
+  {
+      image: "/images/events/GDSC_Orientation_2023-24/GDSC_Orientation_2023-24-main.jpg",
+  },
+  {
+      image: "/images/events/Google_Cloud_Study_Jams_2022/Google_Cloud_Study_Jams_2022-main.jpg",
+  },
+  {
+      image: "/images/events/Build_With_AI/Build_With_AI-main.png",
+  },
+  {
+      image: "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
+  },
+  {
+      image: "/images/events/Git_and_GitHub_Workshop/Git_and_GitHub_Workshop-main.jpg",
+  },
 
 ];
 

@@ -16,24 +16,28 @@ const gradients = [
 const TeamPage = () => {
   const teamMembers = [
     {
-      name: "Anusha Tiwari",
-      role: "GDSC Lead",
-      image: "1.png",
-      linkedin: "https://www.linkedin.com/in/anusha",
-      github: <FaGithub />,
-      insta: "https://instagram.com/anusha",
+      name: "Vanshika Pandey",
+      role: "GDG Lead",
+      image: "23.png",
+      linkedin: "https://www.linkedin.com/in/vanshika-pandey369/",
+      github: null,
+      insta: "https://www.instagram.com/missrocknrolla___",
+      x: "https://x.com/RealVanshikaP",
+      tagline: "It's quite fun to do the impossible (~Walt Disney)",
     },
     {
-      name: "Rajesh Kumar",
-      role: "Core Member",
-      image: "2.png",
-      linkedin: "https://www.linkedin.com/in/rajesh",
-      github: <FaGithub />,
-      insta: "https://instagram.com/rajesh",
+      name: "Ankit Raj",
+      role: "GDG Co-Lead",
+      image: "17.png",
+      linkedin: "https://www.linkedin.com/in/ankitrpathak/",
+      github: null,
+      insta: "https://www.instagram.com/ankitrpathak",
+      x: null,
+      tagline: "When death finds you, may it find you alive",
     },
     {
-      name: "Neha Sharma",
-      role: "Event Coordinator",
+      name: "Toshak Bhat",
+      role: "GDG Co-Lead",
       image: "3.png",
       linkedin: "https://www.linkedin.com/in/toshakbhat",
       github: null,
@@ -42,28 +46,34 @@ const TeamPage = () => {
       tagline: "WYSIWYG",
     },
     {
-      name: "Vikas Mehta",
+      name: "Pihu Gupta",
+      role: "Director Of Operations",
+      image: "10.png",
+      linkedin: "https://www.linkedin.com/in/pihu-gupta-750435280",
+      github: null,
+      insta: "https://www.instagram.com/unapologetically_uhip",
+      x: "https://x.com/Pihugupta1500",
+      tagline: null,
+    },
+    {
+      name: "Rishi Ranjan",
       role: "Technical Lead",
-      image: "4.png",
-      linkedin: "https://www.linkedin.com/in/vikas",
-      github: <FaGithub />,
-      insta: "https://instagram.com/vikas",
+      image: "8.png",
+      linkedin: "linkedin.com/in/rishi-rih",
+      github: null,
+      insta: "https://www.instagram.com/rih__theory",
+      x: "https://x.com/rih__theory",
+      tagline: "Box-Box",
     },
     {
-      name: "Priya Singh",
-      role: "Marketing Head",
-      image: "5.png",
-      linkedin: "https://www.linkedin.com/in/priya",
-      github: <FaGithub />,
-      insta: "https://instagram.com/priya",
-    },
-    {
-      name: "Amit Patel",
-      role: "Graphic Designer",
-      image: "6.png",
-      linkedin: "https://www.linkedin.com/in/amit",
-      github: <FaGithub />,
-      insta: "https://instagram.com/amit",
+      name: "Vivek Tripathi",
+      role: "Technical Co-lead",
+      image: "1.png",
+      linkedin: "https://www.linkedin.com/in/vivek-tripathi-319677249",
+      github: null,
+      insta: "https://www.instagram.com/tripathivivek123",
+      x: "https://x.com/VivekTripa45743",
+      tagline: "Curious about how things work",
     },
     {
       name: "Dev Goyal",
@@ -385,7 +395,9 @@ const TeamPage = () => {
           })}
         </div>
       </div>
+      <div class="mt-16">
       <Footer2 />
+      </div>
     </>
   );
 };

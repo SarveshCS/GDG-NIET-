@@ -3,8 +3,13 @@ import { useRef } from "react";
 
 export default function HeroSection8() {
   const sectionVariants = {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0, transition: { duration: 1 } },
+    initial: { opacity: 0, x: -500 }, // Move from further left
+    animate: { opacity: 1, x: 0, transition: { duration: 1.5 } },
+  };
+
+  const sectionRightVariants = {
+    initial: { opacity: 0, x: 500 }, // Move from further right
+    animate: { opacity: 1, x: 0, transition: { duration: 1.5 } },
   };
 
   const textVariants = {
@@ -98,6 +103,7 @@ export default function HeroSection8() {
           color: "#c10202",
           bgColor: "bg-[#d91515fd]",
           imgSrc: "/images/il1.svg",
+          variant: sectionVariants,
         },
         {
           ref: sectionRefs.students,
@@ -106,6 +112,7 @@ export default function HeroSection8() {
           color: "#02C173",
           bgColor: "bg-[#15d98bfd]",
           imgSrc: "/images/il2.svg",
+          variant: sectionRightVariants,
         },
         {
           ref: sectionRefs.influence,
@@ -114,12 +121,13 @@ export default function HeroSection8() {
           color: "#0238c1",
           bgColor: "bg-[#1560d9fd]",
           imgSrc: "/images/il3.svg",
+          variant: sectionVariants,
         },
       ].map((section, index) => (
         <motion.div
           ref={section.ref}
           className="flex flex-wrap items-center justify-around space-y-28"
-          variants={sectionVariants}
+          variants={section.variant}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}

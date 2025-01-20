@@ -12,14 +12,12 @@ const CollegeMap = () => {
     chapterName: "Noida Institute of Engineering and Technology (NIET, Greater Noida",
     address: "",
     coordinates: { lat: 28.463111779497158, lng: 77.49078985504053 },
-    leadName: "Anusha Tiwari",
-    memberCount: 150,
+    leadName: "Vanshika pandey",
+    memberCount: 2000,
     foundedYear: 2020,
-    website: "https://gdsc.community.dev/xyz-college-of-engineering/",
+    website: "https://gdg.community.dev/gdg-on-campus-noida-institute-of-engineering-and-technology-greater-noida-india/",
     upcomingEvents: [
-      { name: "Android Study Jam", date: "2024-03-15" },
-      { name: "Cloud Study Jam", date: "2024-03-22" },
-      { name: "Web Development Workshop", date: "2024-04-05" },
+      { name: "None", date: "" },
     ]
   };
 

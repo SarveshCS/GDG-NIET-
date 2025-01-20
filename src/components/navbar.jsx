@@ -44,6 +44,9 @@ const Navbar = () => {
           <NavLink to="/team" isActive={isActive("/team")} onClick={toggleMenu}>
             Team
           </NavLink>
+          <NavLink to="/media" isActive={isActive("/media")} onClick={toggleMenu}>
+            Media
+          </NavLink>
           <Link
             to="/exhib"
             className="w-full md:w-auto px-4 py-2 text-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"

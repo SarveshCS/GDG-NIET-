@@ -2,6 +2,20 @@ import React from 'react';
 import { Github, Linkedin } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
+  // Add loading state
+  if (!project) {
+    return (
+      <div className="flex flex-row w-full h-48 bg-gray-100 rounded-lg animate-pulse">
+        <div className="w-1/3 min-w-[200px] bg-gray-200" />
+        <div className="flex-1 p-4">
+          <div className="h-6 bg-gray-200 rounded w-3/4 mb-4" />
+          <div className="h-4 bg-gray-200 rounded w-full mb-3" />
+          <div className="h-4 bg-gray-200 rounded w-2/3" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-row w-full bg-white rounded-lg overflow-hidden hover:bg-gray-50 transition-colors">
       {/* Thumbnail - Left side */}

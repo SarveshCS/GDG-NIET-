@@ -1,52 +1,63 @@
 .media-gallery {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .gallery-header {
-    margin-bottom: 2rem;
-  }
-  
-  .gallery-header h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  
-  .gallery-header p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .masonry-grid {
-    display: flex;
-    margin-left: -16px; /* gutter size offset */
-    width: auto;
-  }
-  
+  padding: 20px;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.masonry-grid {
+  display: flex;
+  margin-left: -10px; /* Adjusts spacing between columns */
+  width: auto;
+}
+
+.masonry-grid_column {
+  padding-left: 10px; /* Adjusts spacing between columns */
+  background-clip: padding-box;
+}
+
+.image-item {
+  margin-bottom: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 3; /* Ensures uniform aspect ratio for most boxes */
+}
+
+.image-item img {
+  width: 100%; /* Makes the image fill the container width */
+  height: 100%; /* Ensures the image fills the height */
+  object-fit: cover; /* Crops the image to fit the box while maintaining aspect ratio */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+}
+
+/* Specific styling for the 6th image */
+.sixth-image {
+  aspect-ratio: 16 / 9; /* Adjusts aspect ratio for a wider image */
+}
+
+.image-item:hover img {
+  transform: scale(1.03); /* Adds a subtle hover effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds shadow on hover */
+}
+
+@media (max-width: 1100px) {
   .masonry-grid_column {
-    padding-left: 16px; /* gutter size */
-    background-clip: padding-box;
+    padding-left: 8px;
   }
-  
   .image-item {
-    margin-bottom: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
   }
-  
-  .image-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 700px) {
+  .masonry-grid_column {
+    padding-left: 6px;
   }
-  
-  .image-item img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
+  .image-item {
+    margin-bottom: 6px;
   }
-  
-  
+}

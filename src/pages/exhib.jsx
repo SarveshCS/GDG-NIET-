@@ -8,6 +8,8 @@ import FeaturedProject from '@/components/exhibComp/FeaturedProject';
 import SubmitProjectModal from '@/components/exhibComp/SubmitProjectModal';
 import Footer from '@/components/exhibComp/Footer';
 import { demoProjects, featuredProject, categories } from '@/components/exhibComp/data';
+import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 export default function ExhibPro() {
   const [projects, setProjects] = useState(demoProjects)
@@ -23,6 +25,28 @@ export default function ExhibPro() {
     const daysSinceSubmission = differenceInDays(currentDate, projectSubmissionDate)
     setShowFeatured(daysSinceSubmission >= 20)
   }, [])
+
+  // Fetch projects from Firestore on component mount
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const projectsRef = collection(db, 'projects');
+        const q = query(projectsRef, orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        
+        const fetchedProjects = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   // Use useMemo to optimize filtering and searching
   const filteredProjects = useMemo(() => {
@@ -44,17 +68,33 @@ export default function ExhibPro() {
     setSearchTerm(term)
   }
 
-  const handleSubmitProject = (projectData) => {
-    const newProject = {
-      id: String(projects.length + 1),
-      title: projectData.name,
-      description: projectData.description,
-      image: '/api/placeholder/400/300',
-      category: projectData.category || ['Web Development'],
-      technologies: projectData.technologies || ['React'],
+  // Modified handleSubmitProject to store in Firestore
+  const handleSubmitProject = async (projectData) => {
+    try {
+      const newProject = {
+        title: projectData.name,
+        description: projectData.description,
+        image: projectData.image || '/api/placeholder/400/300',
+        category: projectData.category || ['Web Development'],
+        technologies: projectData.technologies || ['React'],
+        githubUrl: projectData.github,
+        linkedinUrl: projectData.linkedin,
+        owner: projectData.owner || 'Anonymous',
+        createdAt: new Date().toISOString(),
+      };
+
+      const docRef = await addDoc(collection(db, 'projects'), newProject);
+      
+      setProjects(prevProjects => [{
+        id: docRef.id,
+        ...newProject
+      }, ...prevProjects]);
+      
+    } catch (error) {
+      console.error('Error adding project:', error);
+      // You might want to show an error message to the user here
     }
-    setProjects(prevProjects => [...prevProjects, newProject])
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans">

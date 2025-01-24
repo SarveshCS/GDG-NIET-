@@ -8,6 +8,7 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
     linkedin: '',
     description: '',
     technologies: '',
+    owner: '',
   })
 
   const handleChange = (e) => {
@@ -96,6 +97,17 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               id="technologies"
               className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
               value={projectData.technologies}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="owner" className="block text-sm font-medium text-gray-700 mb-0.5">Project Owner</label>
+            <input
+              type="text"
+              id="owner"
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
+              value={projectData.owner}
               onChange={handleChange}
               required
             />

@@ -4,9 +4,10 @@ const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [show, setShow] = useState(false);
   
-  const accentColor = 'hsl(360, 80%, 50%)';
-  const darkenAccent = 'hsl(360, 80%, 38%)';
-  const lightenAccent = 'hsl(360, 80%, 70%)';
+  // Changed to match the gray-900 background theme
+  const accentColor = 'rgb(17, 24, 39)';  // gray-900
+  const darkenAccent = 'rgb(12, 17, 27)'; // slightly darker
+  const lightenAccent = 'rgb(26, 32, 48)'; // slightly lighter
   
   const curtainStyle = {
     width: '50%',
@@ -22,6 +23,7 @@ const Hero = () => {
     top: 0,
     transition: 'transform 1.5s ease-in-out',
     zIndex: 20,
+    animation: 'wave 8s ease-in-out infinite',
   };
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Hero = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Content - Now positioned behind curtains */}
+      {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div 
           className="container mx-auto px-4 text-center transition-all duration-1000"
@@ -66,7 +68,46 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Curtains - Now overlaying the content */}
+      {/* Curtains with wave animation */}
+      <style>
+        {`
+          @keyframes wave {
+            0%, 100% {
+              clip-path: polygon(
+                0% 0%,
+                100% 0%,
+                100% 100%,
+                0% 100%
+              );
+            }
+            25% {
+              clip-path: polygon(
+                0% 0%,
+                100% 0%,
+                100% 90%,
+                0% 100%
+              );
+            }
+            50% {
+              clip-path: polygon(
+                0% 0%,
+                100% 0%,
+                100% 100%,
+                0% 90%
+              );
+            }
+            75% {
+              clip-path: polygon(
+                0% 0%,
+                100% 0%,
+                100% 90%,
+                0% 100%
+              );
+            }
+          }
+        `}
+      </style>
+      
       <div 
         className="left-curtain"
         style={{
@@ -81,6 +122,7 @@ const Hero = () => {
           ...curtainStyle,
           right: 0,
           transform: isHovered ? 'translateX(100%)' : 'translateX(0)',
+          animation: 'wave 8s ease-in-out infinite reverse', // Reverse animation for right curtain
         }}
       />
     </section>

@@ -5,49 +5,41 @@ import "@/components/CompCss/MediaGallery.css"
 
 const galleryImages = [
   {
-    src: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/GDG%20Cloud%20Noida.jpg",
+    src: "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
     alt: "GDG Cloud Event",
-    height: 300,
   },
   {
-    src: "https://gdg.community.dev/api/assets/api/v1/chapter/1/event/b2c9c83c/photo/",
+    src: "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
     alt: "GDG Community Event",
-    height: 400,
   },
   {
-    src: "https://gdg.community.dev/api/assets/api/v1/chapter/1/event/c1f9c83d/photo/",
+    src: "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
     alt: "Tech Workshop Session",
-    height: 350,
   },
   {
-    src: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/WhatsApp%20Image%202023-09-16%20at%2012.24.47_OZxXwpk.jpeg",
+    src: "/images/events/innova_2024/INNOVA_2024-main.jpg",
     alt: "Developer Meetup",
-    height: 280,
   },
   {
-    src: "https://gdg.community.dev/api/assets/api/v1/chapter/1/event/d4f9c83e/photo/",
+    src: "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
     alt: "Coding Workshop",
-    height: 320,
   },
   {
-    src: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/gdg%20noida.jpg",
+    src: "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
     alt: "GDG Noida Event",
-    height: 380,
+    customClass: "sixth-image", // Adding a custom class for the 6th image
   },
   {
-    src: "https://gdg.community.dev/api/assets/api/v1/chapter/1/event/e5f9c83f/photo/",
+    src: "/images/events/Git_and_GitHub_Workshop/Git_and_GitHub_Workshop-main.jpg",
     alt: "Tech Talk Session",
-    height: 300,
   },
   {
-    src: "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/gdg%20cloud.jpg",
+    src: "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
     alt: "Cloud Computing Workshop",
-    height: 340,
   },
   {
-    src: "https://gdg.community.dev/api/assets/api/v1/chapter/1/event/f6f9c83g/photo/",
+    src: "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
     alt: "Developer Conference",
-    height: 360,
   },
 ]
 
@@ -68,10 +60,18 @@ function MediaGallery() {
         <p>Capturing moments of innovation and collaboration</p>
       </div>
 
-      <Masonry breakpointCols={breakpointColumnsObj} className="masonry-grid" columnClassName="masonry-grid_column">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="masonry-grid"
+        columnClassName="masonry-grid_column"
+      >
         {galleryImages.map((image, index) => (
-          <div key={index} className="image-item" onClick={() => setSelectedImage(image)}>
-            <img src={image.src || "/placeholder.svg"} alt={image.alt} style={{ height: image.height }} />
+          <div
+            key={index}
+            className={`image-item ${image.customClass || ""}`}
+            onClick={() => setSelectedImage(image)}
+          >
+            <img src={image.src || "/placeholder.svg"} alt={image.alt} />
           </div>
         ))}
       </Masonry>
@@ -82,4 +82,3 @@ function MediaGallery() {
 }
 
 export default MediaGallery
-

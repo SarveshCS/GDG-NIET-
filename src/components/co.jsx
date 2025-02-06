@@ -115,8 +115,7 @@ export default function HeroSection8() {
                 className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2"
                 whileHover={{ scale: 1.05 }}
               >
-                A collection of 10,000 worldly Koalas each with their unique
-                skillsets. Their mission is to protect the world from evil.
+                A collection of 800+ vibrant minds united under GDG NIET, each with unique skillsets. Their mission is to revolutionize technology and solve real-world challenges together.
               </motion.p>
             </div>
             <motion.div
@@ -147,8 +146,7 @@ export default function HeroSection8() {
                 {section.title.split(section.highlight)[1]}
               </h1>
               <p className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2">
-                A collection of 10,000 worldly Koalas each with their unique
-                skillsets. Their mission is to protect the world from evil.
+              A collection of 10,000 vibrant minds united under GDG NIET, each with unique skillsets. Their mission is to revolutionize technology and solve real-world challenges together.
               </p>
             </div>
             <div className="w-full md:w-auto">

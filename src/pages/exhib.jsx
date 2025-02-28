@@ -10,6 +10,7 @@ import Footer from '@/components/exhibComp/Footer';
 import { demoProjects, featuredProject, categories } from '@/components/exhibComp/data';
 import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import SuccessModal from '@/components/exhibComp/SuccessModal';
 
 export default function ExhibPro() {
   const [projects, setProjects] = useState(demoProjects)
@@ -17,6 +18,7 @@ export default function ExhibPro() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentFilter, setCurrentFilter] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   useEffect(() => {
     const projectSubmissionDate = new Date()
@@ -94,6 +96,7 @@ export default function ExhibPro() {
           liveDemoUrl: projectData.liveDemoUrl || null,
         },
         createdAt: new Date().toISOString(),
+        status: 'pending',
       };
 
       const projectsRef = collection(db, 'projects');
@@ -105,7 +108,7 @@ export default function ExhibPro() {
       }, ...prevProjects]);
 
       setIsModalOpen(false);
-      alert('Project submitted successfully!');
+      setShowSuccessModal(true);
       
     } catch (error) {
       console.error('Error adding project:', error);
@@ -138,6 +141,10 @@ export default function ExhibPro() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleSubmitProject}
+      />
+      <SuccessModal 
+        isOpen={showSuccessModal} 
+        onClose={() => setShowSuccessModal(false)} 
       />
     </div>
   );

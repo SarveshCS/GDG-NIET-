@@ -3,16 +3,11 @@
 import { useState } from "react"
 import { PlusCircle, Sparkles, Trophy, Users } from "lucide-react"
 
-const SubmitButtonSection = () => {
-  const [notification, setNotification] = useState("")
-
-  const handleSubmitClick = () => {
-    setNotification("Project submissions will open from next month. Stay tuned!")
-
-    // Clear the notification after 5 seconds
-    setTimeout(() => {
-      setNotification("")
-    }, 5000)
+const SubmitButtonSection = ({ onSubmitProject }) => {
+  const handleModalClose = () => setIsModalOpen(false)
+  const handleProjectSubmit = (projectData) => {
+    console.log('Project submitted:', projectData)
+    setIsModalOpen(false)
   }
 
   return (
@@ -25,14 +20,12 @@ const SubmitButtonSection = () => {
           </p>
 
           <button
-            onClick={handleSubmitClick}
+            onClick={onSubmitProject}
             className="flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-xl shadow-lg transform transition-all hover:scale-105 text-lg font-semibold mx-auto"
           >
             <PlusCircle className="w-6 h-6" />
             <span>Submit Your Project</span>
           </button>
-
-          {notification && <div className="mt-4 p-3 bg-blue-100 text-blue-700 rounded-md">{notification}</div>}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">

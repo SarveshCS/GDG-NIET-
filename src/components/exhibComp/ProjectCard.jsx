@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Youtube, Globe } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
   // Add loading state
@@ -38,45 +38,67 @@ const ProjectCard = ({ project }) => {
         {/* Description */}
         <p className="text-gray-600 text-sm mb-3">{project.description}</p>
 
-        {/* Category */}
-        <div className="flex flex-wrap gap-2 mb-3">
-          {project.category?.map((cat) => (
-            <span
-              key={cat}
-              className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full"
-            >
-              {cat}
-            </span>
-          ))}
+        {/* Student Info */}
+        <div className="flex flex-wrap gap-2 mb-3 text-sm text-gray-600">
+          <span>{project.owner}</span>
+          {project.studentInfo && (
+            <>
+              <span>•</span>
+              <span>{project.studentInfo.branch}</span>
+              <span>•</span>
+              <span>Year {project.studentInfo.year}</span>
+              <span>•</span>
+              <span>Section {project.studentInfo.section}</span>
+            </>
+          )}
         </div>
 
-        {/* Owner and social links */}
-        <div className="flex items-center gap-2 mb-3">
-          <p className="text-gray-600 text-sm">{project.owner || 'Project Owner'}</p>
-          <div className="flex gap-2">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                className="text-gray-500 hover:text-gray-900 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Repository"
-              >
-                <Github size={16} />
-              </a>
-            )}
-            {project.linkedinUrl && (
-              <a
-                href={project.linkedinUrl}
-                className="text-gray-500 hover:text-gray-900 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Owner's LinkedIn Profile"
-              >
-                <Linkedin size={16} />
-              </a>
-            )}
-          </div>
+        {/* Project Links */}
+        <div className="flex items-center gap-3 mb-4">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repository"
+            >
+              <Github size={18} />
+            </a>
+          )}
+          {project.linkedinUrl && (
+            <a
+              href={project.linkedinUrl}
+              className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Owner's LinkedIn Profile"
+            >
+              <Linkedin size={18} />
+            </a>
+          )}
+          {project.projectLinks?.youtubeUrl && (
+            <a
+              href={project.projectLinks.youtubeUrl}
+              className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Project Demo Video"
+            >
+              <Youtube size={18} />
+            </a>
+          )}
+          {project.projectLinks?.liveDemoUrl && (
+            <a
+              href={project.projectLinks.liveDemoUrl}
+              className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Live Demo"
+            >
+              <Globe size={18} />
+            </a>
+          )}
         </div>
 
         {/* Tech Stack */}

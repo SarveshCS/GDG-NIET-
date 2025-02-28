@@ -71,50 +71,28 @@ export default function ExhibPro() {
   // Modified handleSubmitProject to store in Firestore
   const handleSubmitProject = async (projectData) => {
     try {
-      console.log('Submitting project data:', projectData);
-
       const newProject = {
-        title: projectData.projectName,
-        description: projectData.projectDescription,
-        image: projectData.projectImage,
-        technologies: projectData.techStack ? projectData.techStack.split(',').map(tech => tech.trim()) : [],
-        githubUrl: projectData.githubUrl,
-        linkedinUrl: projectData.linkedinUrl,
-        owner: projectData.name,
-        studentInfo: {
-          erpId: projectData.erpId,
-          rollNo: projectData.rollNo,
-          year: projectData.year,
-          section: projectData.section,
-          branch: projectData.branch,
-          collegeEmail: projectData.collegeEmail || null,
-        },
-        projectLinks: {
-          youtubeUrl: projectData.youtubeUrl || null,
-          liveDemoUrl: projectData.liveDemoUrl || null,
-        },
+        title: projectData.name,
+        description: projectData.description,
+        image: projectData.image || '/api/placeholder/400/300',
+        category: projectData.category || ['Web Development'],
+        technologies: projectData.technologies || ['React'],
+        githubUrl: projectData.github,
+        linkedinUrl: projectData.linkedin,
+        owner: projectData.owner || 'Anonymous',
         createdAt: new Date().toISOString(),
       };
 
-      console.log('Formatted project data:', newProject);
-
-      const projectsRef = collection(db, 'projects');
-      const docRef = await addDoc(projectsRef, newProject);
+      const docRef = await addDoc(collection(db, 'projects'), newProject);
       
-      console.log('Document written with ID:', docRef.id);
-
-      // Update local state with new project
       setProjects(prevProjects => [{
         id: docRef.id,
         ...newProject
       }, ...prevProjects]);
-
-      setIsModalOpen(false);
-      alert('Project submitted successfully!');
       
     } catch (error) {
       console.error('Error adding project:', error);
-      alert(`Failed to submit project: ${error.message}`);
+      // You might want to show an error message to the user here
     }
   };
 

@@ -4,29 +4,28 @@ import Header from '@/components/exhibComp/Header';
 import Hero from '@/components/exhibComp/Hero';
 import SubmitButtonSection from '@/components/exhibComp/SubmitButtonSection';
 import Projectshowcase from '@/components/exhibComp/ProjectShowcase';
-import FeaturedProject from '@/components/exhibComp/FeaturedProject';
 import SubmitProjectModal from '@/components/exhibComp/SubmitProjectModal';
 import Footer from '@/components/exhibComp/Footer';
-import { demoProjects, featuredProject, categories } from '@/components/exhibComp/data';
 import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import SuccessModal from '@/components/exhibComp/SuccessModal';
+import JudgmentParameters from '@/components/exhibComp/JudgmentParameters';
+
+// Add categories
+const categories = [
+  "All",
+  "Web Development",
+  "Mobile Apps",
+  "AI/ML",
+  "IoT",
+];
 
 export default function ExhibPro() {
-  const [projects, setProjects] = useState(demoProjects)
-  const [showFeatured, setShowFeatured] = useState(false)
+  const [projects, setProjects] = useState([]) // Initialize with empty array instead of demoProjects
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentFilter, setCurrentFilter] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
   const [showSuccessModal, setShowSuccessModal] = useState(false)
-
-  useEffect(() => {
-    const projectSubmissionDate = new Date()
-    projectSubmissionDate.setDate(projectSubmissionDate.getDate() - 20)
-    const currentDate = new Date()
-    const daysSinceSubmission = differenceInDays(currentDate, projectSubmissionDate)
-    setShowFeatured(daysSinceSubmission >= 20)
-  }, [])
 
   // Fetch projects from Firestore on component mount
   useEffect(() => {
@@ -128,7 +127,7 @@ export default function ExhibPro() {
       <SubmitButtonSection onSubmitProject={() => setIsModalOpen(true)} />
       <main className="flex-1 py-12">
         <div className="container mx-auto px-4">
-          {showFeatured && <FeaturedProject project={featuredProject} />}
+          <JudgmentParameters />
           {filteredProjects.length === 0 ? (
             <p className="text-center text-xl mt-8">No projects found matching your criteria.</p>
           ) : (

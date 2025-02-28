@@ -96,14 +96,9 @@ export default function ExhibPro() {
         createdAt: new Date().toISOString(),
       };
 
-      console.log('Formatted project data:', newProject);
-
       const projectsRef = collection(db, 'projects');
       const docRef = await addDoc(projectsRef, newProject);
-      
-      console.log('Document written with ID:', docRef.id);
 
-      // Update local state with new project
       setProjects(prevProjects => [{
         id: docRef.id,
         ...newProject

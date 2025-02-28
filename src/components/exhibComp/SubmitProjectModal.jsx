@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { uploadToCloudinary } from '@/utils/cloudinary'
 
 export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
   const [projectData, setProjectData] = useState({
@@ -20,6 +21,8 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
     youtubeUrl: '',
     liveDemoUrl: '',
   })
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [isUploading, setIsUploading] = useState(false)
 
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -29,26 +32,53 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
     }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setSelectedImage(file)
+      // Create a preview URL
+      const previewUrl = URL.createObjectURL(file)
+      setProjectData(prev => ({
+        ...prev,
+        projectImage: previewUrl // Temporary preview URL
+      }))
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
+      setIsUploading(true)
+
       // Validate required fields
       const requiredFields = [
         'name', 'erpId', 'rollNo', 'projectName', 'projectDescription',
-        'projectImage', 'githubUrl', 'linkedinUrl', 'techStack', 'year',
+        'githubUrl', 'linkedinUrl', 'techStack', 'year',
         'section', 'branch'
-      ];
+      ]
 
-      const missingFields = requiredFields.filter(field => !projectData[field]);
+      const missingFields = requiredFields.filter(field => !projectData[field])
       if (missingFields.length > 0) {
-        throw new Error(`Missing required fields: ${missingFields.join(', ')}`);
+        throw new Error(`Missing required fields: ${missingFields.join(', ')}`)
       }
 
-      // Submit the data without processing techStack here
-      onSubmit(projectData);
+      if (!selectedImage) {
+        throw new Error('Please select a project image')
+      }
+
+      // Upload image to Cloudinary
+      const imageUrl = await uploadToCloudinary(selectedImage)
+
+      // Submit the data with the Cloudinary URL
+      onSubmit({
+        ...projectData,
+        projectImage: imageUrl
+      })
     } catch (error) {
-      console.error('Form submission error:', error);
-      alert(error.message);
+      console.error('Form submission error:', error)
+      alert(error.message)
+    } finally {
+      setIsUploading(false)
     }
   }
 
@@ -186,15 +216,28 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
             </div>
 
             <div>
-              <label htmlFor="projectImage" className="block text-sm font-medium text-gray-700 mb-0.5">Project Image URL *</label>
-              <input
-                type="url"
-                id="projectImage"
-                className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={projectData.projectImage}
-                onChange={handleChange}
-                required
-              />
+              <label htmlFor="projectImage" className="block text-sm font-medium text-gray-700 mb-0.5">
+                Project Image *
+              </label>
+              <div className="mt-1 flex items-center space-x-4">
+                <input
+                  type="file"
+                  id="projectImage"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+                {projectData.projectImage && (
+                  <div className="relative w-20 h-20">
+                    <img
+                      src={projectData.projectImage}
+                      alt="Preview"
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
             <div>
@@ -273,9 +316,10 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50"
+              disabled={isUploading}
             >
-              Submit Project
+              {isUploading ? 'Uploading...' : 'Submit Project'}
             </button>
           </div>
         </form>

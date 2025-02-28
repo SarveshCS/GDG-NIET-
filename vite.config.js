@@ -11,6 +11,18 @@ export default defineConfig({
     },
   },
   server: {
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/exhib/, to: '/index.html' },
+        { from: /./, to: '/index.html' }
+      ]
+    }
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  }
 })

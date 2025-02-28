@@ -1,11 +1,13 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, createHashRouter } from 'react-router-dom';
 import Landing from '../pages/landing';
 import TeamPage from '../pages/team';
 import EventsPage from '../pages/event';
 import ExhibPro from '../pages/exhib';
 import Media from '../pages/media';
+import NotFound from '../components/NotFound';
 
-const router = createBrowserRouter([
+// Use HashRouter for better compatibility with static hosting
+const router = createHashRouter([
   {
     path: '/',
     element: <Landing />,
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/exhib',
     element: <ExhibPro />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
 

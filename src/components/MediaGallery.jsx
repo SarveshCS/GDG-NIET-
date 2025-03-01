@@ -5,6 +5,10 @@ import "@/components/CompCss/MediaGallery.css"
 
 const galleryImages = [
   {
+    src: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+    alt: "GEN AI Study Jams 2024 Swags Distribution",
+  },
+  {
     src: "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
     alt: "GDG Cloud Event",
   },
@@ -27,7 +31,7 @@ const galleryImages = [
   {
     src: "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
     alt: "GDG Noida Event",
-    customClass: "sixth-image", // Adding a custom class for the 6th image
+    customClass: "improper-size-image",
   },
   {
     src: "/images/events/Git_and_GitHub_Workshop/Git_and_GitHub_Workshop-main.jpg",

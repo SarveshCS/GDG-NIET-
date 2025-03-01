@@ -34,8 +34,8 @@
   border: 1px solid #ddd;
 }
 
-/* Specific styling for the 6th image */
-.sixth-image {
+/* Specific styling for image not in proper ratio */
+.improper-size-image {
   aspect-ratio: 16 / 9; /* Adjusts aspect ratio for a wider image */
 }
 

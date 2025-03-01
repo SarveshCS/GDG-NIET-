@@ -107,7 +107,7 @@ const CollegeMap = () => {
       </div>
 
       {/* Map Area */}
-      <div className="flex-1 bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 min-h-[500px]">
+      <div className="flex-1 bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 min-h-[500px] z-10">
         {mapError ? (
           <div className="h-full flex items-center justify-center text-red-500 p-4 text-center">
             {mapError}

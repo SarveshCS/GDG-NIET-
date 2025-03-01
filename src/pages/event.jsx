@@ -30,134 +30,19 @@ const EventsPage = () => {
     past: [
       {
         id: 1,
-        title: "INNOVA 2024",
-        date: "2024",
+        title: "Google Cloud Study Jams 2022",
+        date: "2022",
         time: "9:00 AM - 6:00 PM",
-        location: "New Delhi",
+        location: "NIET campus",
         description:
-          "A flagship event showcasing innovation, creativity, and cutting-edge technology through student projects and workshops.",
-        image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
-        attendees: 268,
-        tags: ["Innovation", "Technology", "Exhibition", "Networking"],
+          "An earlier edition of the hands-on workshop series to learn and apply Google Cloud technologies.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2022/Google_Cloud_Study_Jams_2022-main.jpg",
+        attendees: 174,
+        tags: ["GoogleCloud", "Workshops", "Learning", "Networking"],
       },
       {
         id: 2,
-        title: "Google Women Engineers Program Cohort 6-2024",
-        date: "2024",
-        time: "9:00 AM - 6:00 PM",
-        location: "Online (Virtual Event)",
-        description:
-          "An initiative by Google to empower women in engineering with resources, mentorship, and networking opportunities.",
-        image:
-          "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
-        attendees: 214,
-        tags: ["WomenInTech", "Empowerment", "Networking", "Google"],
-      },
-      {
-        id: 3,
-        title: "Build With AI",
-        date: "2024",
-        time: "9:00 AM - 6:00 PM",
-        location: "Online (Virtual Event)",
-        description:
-          "An exciting event focused on leveraging AI technologies to build real-world applications and solutions.",
-        image: "/images/events/Build_With_AI/Build_With_AI-main.png",
-        attendees: 299,
-        tags: ["AI", "Development", "Networking", "Innovation"],
-      },
-      {
-        id: 4,
-        title: "GDG Orientation 2024-25 - Second Year",
-        date: "2024",
-        time: "9:00 AM - 6:00 PM",
-        location: "NIET campus",
-        description:
-          "Orientation for second-year students to introduce them to the Google Developer Group and its activities.",
-        image:
-          "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
-        attendees: 189,
-        tags: ["Orientation", "GDG", "Networking", "Students"],
-      },
-      {
-        id: 5,
-        title: "GDG Orientation 2024-25 - First Year",
-        date: "2024",
-        time: "9:00 AM - 6:00 PM",
-        location: "NIET campus",
-        description:
-          "A special orientation session for first-year students to get involved with GDG and start their journey in development.",
-        image:
-          "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
-        attendees: 276,
-        tags: ["Orientation", "GDG", "FirstYear", "Networking"],
-      },
-      {
-        id: 6,
-        title: "Devfest 2023 - New Delhi",
-        date: "2023",
-        time: "9:00 AM - 6:00 PM",
-        location: "New Delhi",
-        description:
-          "An annual developer conference featuring talks, workshops, and networking opportunities with industry professionals.",
-        image:
-          "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
-        attendees: 254,
-        tags: ["DevFest", "Conference", "Networking", "Development"],
-      },
-      {
-        id: 7,
-        title: "Google Cloud Study Jams 2023 Swags Distribution",
-        date: "2023",
-        time: "9:00 AM - 6:00 PM",
-        location: "NIET campus",
-        description:
-          "A session to celebrate and distribute swag for participants who completed the Google Cloud Study Jams 2023.",
-        image:
-          "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
-        attendees: 182,
-        tags: ["GoogleCloud", "StudyJams", "Swags", "Networking"],
-      },
-      {
-        id: 8,
-        title: "Google Cloud Study Jams 2023",
-        date: "2023",
-        time: "9:00 AM - 6:00 PM",
-        location: "NIET campus",
-        description:
-          "A hands-on session exploring Google Cloud technologies and building cloud solutions.",
-        image:
-          "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
-        attendees: 199,
-        tags: ["GoogleCloud", "CloudTech", "Workshops", "Networking"],
-      },
-      {
-        id: 9,
-        title: "GDSC Orientation 2023-24",
-        date: "2023",
-        time: "9:00 AM - 6:00 PM",
-        location: "NIET campus",
-        description:
-          "An introduction to the Google Developer Student Club (GDSC) and its community initiatives.",
-        image:
-          "/images/events/GDSC_Orientation_2023-24/GDSC_Orientation_2023-24-main.jpg",
-        attendees: 245,
-        tags: ["GDSC", "Orientation", "Networking", "Community"],
-      },
-      {
-        id: 10,
-        title: "Development for Collegiate Women in Tech",
-        date: "2023",
-        time: "9:00 AM - 6:00 PM",
-        location: "Online (Virtual Event)",
-        description:
-          "A session aimed at encouraging collegiate women in tech to enhance their skills and grow in the field.",
-        image:
-          "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
-        attendees: 263,
-        tags: ["WomenInTech", "Development", "Empowerment", "Networking"],
-      },
-      {
-        id: 11,
         title: "Git and GitHub Workshop",
         date: "2023",
         time: "9:00 AM - 6:00 PM",
@@ -170,17 +55,144 @@ const EventsPage = () => {
         tags: ["Git", "GitHub", "Workshops", "Networking"],
       },
       {
-        id: 12,
-        title: "Google Cloud Study Jams 2022",
-        date: "2022",
+        id: 3,
+        title: "Development for Collegiate Women in Tech",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "A session aimed at encouraging collegiate women in tech to enhance their skills and grow in the field.",
+        image:
+          "/images/events/Development_for_Collegiate_Women_in_Tech/Development_for_Collegiate_Women_in_Tech-main.jpg",
+        attendees: 263,
+        tags: ["WomenInTech", "Development", "Empowerment", "Networking"],
+      },
+      {
+        id: 4,
+        title: "GDSC Orientation 2023-24",
+        date: "2023",
         time: "9:00 AM - 6:00 PM",
         location: "NIET campus",
         description:
-          "An earlier edition of the hands-on workshop series to learn and apply Google Cloud technologies.",
+          "An introduction to the Google Developer Student Club (GDSC) and its community initiatives.",
         image:
-          "/images/events/Google_Cloud_Study_Jams_2022/Google_Cloud_Study_Jams_2022-main.jpg",
-        attendees: 174,
-        tags: ["GoogleCloud", "Workshops", "Learning", "Networking"],
+          "/images/events/GDSC_Orientation_2023-24/GDSC_Orientation_2023-24-main.jpg",
+        attendees: 245,
+        tags: ["GDSC", "Orientation", "Networking", "Community"],
+      },
+      {
+        id: 5,
+        title: "Google Cloud Study Jams 2023",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A hands-on session exploring Google Cloud technologies and building cloud solutions.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2023/Google_Cloud_Study_Jams_2023-main.jpg",
+        attendees: 199,
+        tags: ["GoogleCloud", "CloudTech", "Workshops", "Networking"],
+      },
+      {
+        id: 6,
+        title: "Google Cloud Study Jams 2023 Swags Distribution",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A session to celebrate and distribute swag for participants who completed the Google Cloud Study Jams 2023.",
+        image:
+          "/images/events/Google_Cloud_Study_Jams_2023_Swags_Distribution/Google_Cloud_Study_Jams_2023_Swags_Distribution-main.jpg",
+        attendees: 182,
+        tags: ["GoogleCloud", "StudyJams", "Swags", "Networking"],
+      },
+      {
+        id: 7,
+        title: "Devfest 2023 - New Delhi",
+        date: "2023",
+        time: "9:00 AM - 6:00 PM",
+        location: "New Delhi",
+        description:
+          "An annual developer conference featuring talks, workshops, and networking opportunities with industry professionals.",
+        image:
+          "/images/events/Devfest_2023-New_Delhi/Devfest_2023-New_Delhi-main.jpg",
+        attendees: 254,
+        tags: ["DevFest", "Conference", "Networking", "Development"],
+      },
+      {
+        id: 8,
+        title: "GDG Orientation 2024-25 - First Year",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "A special orientation session for first-year students to get involved with GDG and start their journey in development.",
+        image:
+          "/images/events/GDG_Orientation_2024-25-First_Year/GDG_Orientation_2024-25-First_Year-main.jpg",
+        attendees: 276,
+        tags: ["Orientation", "GDG", "FirstYear", "Networking"],
+      },
+      {
+        id: 9,
+        title: "GDG Orientation 2024-25 - Second Year",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "NIET campus",
+        description:
+          "Orientation for second-year students to introduce them to the Google Developer Group and its activities.",
+        image:
+          "/images/events/GDG_Orientation_2024-25-Second_Year/GDG_Orientation_2024-25-Second_Year-main.jpg",
+        attendees: 189,
+        tags: ["Orientation", "GDG", "Networking", "Students"],
+      },
+      {
+        id: 10,
+        title: "Build With AI",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "An exciting event focused on leveraging AI technologies to build real-world applications and solutions.",
+        image: "/images/events/Build_With_AI/Build_With_AI-main.png",
+        attendees: 299,
+        tags: ["AI", "Development", "Networking", "Innovation"],
+      },
+      {
+        id: 11,
+        title: "Google Women Engineers Program Cohort 6-2024",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "Online (Virtual Event)",
+        description:
+          "An initiative by Google to empower women in engineering with resources, mentorship, and networking opportunities.",
+        image:
+          "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",
+        attendees: 214,
+        tags: ["WomenInTech", "Empowerment", "Networking", "Google"],
+      },
+      {
+        id: 12,
+        title: "INNOVA 2024",
+        date: "2024",
+        time: "9:00 AM - 6:00 PM",
+        location: "New Delhi",
+        description:
+          "A flagship event showcasing innovation, creativity, and cutting-edge technology through student projects and workshops.",
+        image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
+        attendees: 268,
+        tags: ["Innovation", "Technology", "Exhibition", "Networking"],
+      },
+      {
+        id: 13,
+        title: "GEN AI Study Jams 2024 Swags Distribution",
+        date: "2024",
+        time: "3:00 PM - 5:00 PM",
+        location: "NIET campus",
+        description:
+          "A session to celebrate and distribute swag for participants who completed the GEN AI Study Jams 2024.",
+        image: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+        attendees: 120,
+        tags: ["Innovation", "Technology", "Swags", "Networking"],
       },
     ],
   };
@@ -347,9 +359,12 @@ const EventsPage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+          {filteredEvents
+            .slice()
+            .reverse()
+            .map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
         </div>
 
         {filteredEvents.length === 0 && (

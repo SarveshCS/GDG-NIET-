@@ -8,11 +8,14 @@ import EventCarousel from '../components/crausal'
 import Footer from '../components/footer'
 import CollegeMap from '@/components/map'
 import GDSCHeader from '@/components/welcome'
+import LiveExhibitionBanner from '../components/LiveExhibitionBanner'
+
 export default function Landing() {
   return (
     <>
       <Navbar />
       <Hero />
+      <LiveExhibitionBanner />
       <GDSCHeader />
       <HeroSection8 />
       <EventCarousel />

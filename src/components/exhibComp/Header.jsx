@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { Search, Menu, ChevronDown } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const Header = ({ onSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-md">
@@ -38,7 +33,7 @@ const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
             </div>
           </div>
 
-          {/* Right: Search Bar and Filter */}
+          {/* Right: Search Bar */}
           <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Search Bar */}
             <div className="relative w-32 sm:w-48 md:w-64 lg:w-80">
@@ -49,33 +44,6 @@ const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
                 className="pl-10 pr-4 py-2 w-full bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
                 onChange={(e) => onSearch(e.target.value)}
               />
-            </div>
-
-            {/* Filter Dropdown */}
-            <div className="relative">
-              <button
-                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition text-xs sm:text-sm"
-                onClick={toggleDropdown}
-              >
-                <span>{currentFilter || "Filter by Category"}</span>
-                <ChevronDown size={18} />
-              </button>
-              {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 transition"
-                      onClick={() => {
-                        onFilterChange(category);
-                        setIsDropdownOpen(false);
-                      }}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -101,23 +69,6 @@ const Header = ({ onFilterChange, onSearch, categories, currentFilter }) => {
                 className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
                 onChange={(e) => onSearch(e.target.value)}
               />
-            </div>
-
-            {/* Mobile Filter Options */}
-            <div>
-              <div className="text-xs font-semibold uppercase text-gray-600 mb-2">Filter by Category</div>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className="block w-full text-left py-2 hover:bg-gray-100 transition"
-                  onClick={() => {
-                    onFilterChange(category);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  {category}
-                </button>
-              ))}
             </div>
           </div>
         )}

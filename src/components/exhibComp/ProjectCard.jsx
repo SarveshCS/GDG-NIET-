@@ -33,10 +33,10 @@ const ProjectCard = ({ project }) => {
       {/* Content - Below image on mobile, right side on desktop */}
       <div className="flex flex-col p-4 flex-1">
         {/* Header with title */}
-        <h3 className="font-medium text-lg mb-2 line-clamp-2">{project.title}</h3>
+        <h3 className="font-medium text-lg mb-2">{project.title}</h3>
         
-        {/* Description */}
-        <p className="text-gray-600 text-sm mb-3 line-clamp-3">{project.description}</p>
+        {/* Description - Remove line-clamp on mobile */}
+        <p className="text-gray-600 text-sm mb-3 sm:line-clamp-3">{project.description}</p>
 
         {/* Student Info */}
         <div className="flex flex-wrap gap-2 mb-3 text-sm text-gray-600">

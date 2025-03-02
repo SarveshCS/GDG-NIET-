@@ -5,22 +5,22 @@ import doodle2 from '../images/website.png'; // Mobile image
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-cover bg-center">
+    <div className="relative overflow-hidden bg-cover bg-center">
       {/* Main Content */}
-      <div className="relative flex min-h-screen flex-col items-center justify-center text-center z-10">
+      <div className="relative flex-col items-center justify-center text-center z-10">
         
         {/* Mobile Image */}
         <img
           src={doodle2} 
           alt="Hero"
-          className="block md:hidden w-full object-cover h-full"  // Show on mobile
+          className="block sm:hidden w-full object-contain h-full"  // Show on mobile
         />
         
         {/* Desktop Image */}
         <img
           src={Doodle}
           alt="Hero"
-          className="hidden md:block w-full object-cover h-full"  // Show on desktop
+          className="hidden sm:block w-full object-cover h-full"  // Show on desktop
         />
 
         {/* Scroll Indicator */}

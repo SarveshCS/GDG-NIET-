@@ -56,31 +56,38 @@ export default function HeroSection8() {
       </div>
 
       {/* Sections */}
-      {[
-        {
-          ref: sectionRefs.community,
-          title: "Community of 800+ Developers",
-          highlight: "800+",
-          color: "#c10202",
-          imgSrc: "/images/il1.svg",
-          variant: isMobile ? {} : sectionVariants,
-        },
-        {
-          ref: sectionRefs.students,
-          title: "More Than 2000+ Students Influenced",
-          highlight: "2000+",
-          color: "#02C173",
-          imgSrc: "/images/il2.svg",
-          variant: isMobile ? {} : sectionRightVariants,
-        },
-        {
-          ref: sectionRefs.influence,
-          title: "Influential In 140 Countries",
-          highlight: "140",
-          color: "#0238c1",
-          imgSrc: "/images/il3.svg",
-          variant: isMobile ? {} : sectionVariants,
-        },
+      {[ 
+        
+          {
+            ref: sectionRefs.community,
+            title: "Community of 150+ Tech Innovators",
+            highlight: "150+",
+            color: "#c10202",
+            imgSrc: "/images/il1.svg",
+            variant: isMobile ? {} : sectionVariants,
+            description:
+              "Join a vibrant community of 150+ tech enthusiasts where fresh ideas and live IG vibes collide. Experience dynamic meetups, spontaneous brainstorming sessions, and tech trends that keep us ahead of the curve."
+          },
+          {
+            ref: sectionRefs.students,
+            title: "Empowering 500+ Students",
+            highlight: "500+",
+            color: "#02C173",
+            imgSrc: "/images/il2.svg",
+            variant: isMobile ? {} : sectionRightVariants,
+            description:
+              "Dive into our world where 500+ students ignite their passion for technology. From hackathons to tech talks, catch our IG stories that spotlight moments of learning, growth, and innovation."
+          },
+          {
+            ref: sectionRefs.influence,
+            title: "Global Impact in 20+ Regions",
+            highlight: "20+",
+            color: "#0238c1",
+            imgSrc: "/images/il3.svg",
+            variant: isMobile ? {} : sectionVariants,
+            description:
+              "Discover how GDG NIET makes waves across 20+ regions. We blend local insights with global tech trends, sharing behind-the-scenes IG updates that highlight our journey in redefining innovation."
+          }        
       ].map((section, index) =>
         !isMobile ? (
           // Wrapping container with w-full ensures the overflow clipping is limited to the section area.
@@ -113,9 +120,7 @@ export default function HeroSection8() {
                   className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2"
                   whileHover={{ scale: 1.05 }}
                 >
-                  A collection of 800+ vibrant minds united under GDG NIET, each with
-                  unique skillsets. Their mission is to revolutionize technology and solve
-                  real-world challenges together.
+                  {section.description}
                 </motion.p>
               </div>
               <motion.div
@@ -147,9 +152,7 @@ export default function HeroSection8() {
                 {section.title.split(section.highlight)[1]}
               </h1>
               <p className="font-IBMPlexRegular text-sm md:text-base lg:text-lg text-left mt-2">
-                A collection of 10,000 vibrant minds united under GDG NIET, each with
-                unique skillsets. Their mission is to revolutionize technology and solve
-                real-world challenges together.
+                {section.description}
               </p>
             </div>
             <div className="w-full md:w-auto">

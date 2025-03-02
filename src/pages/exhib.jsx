@@ -131,7 +131,7 @@ export default function ExhibPro() {
           {filteredProjects.length === 0 ? (
             <p className="text-center text-xl mt-8">No projects found matching your criteria.</p>
           ) : (
-            <Projectshowcase projects={filteredProjects} itemsPerPage={4} />
+            <Projectshowcase projects={filteredProjects} itemsPerPage={10} />
           )}
         </div>
       </main>

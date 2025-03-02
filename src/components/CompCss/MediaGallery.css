@@ -1,5 +1,6 @@
 .media-gallery {
   padding: 20px;
+  max-width: 95vw;
 }
 
 .gallery-header {
@@ -9,55 +10,112 @@
 
 .masonry-grid {
   display: flex;
-  margin-left: -10px; /* Adjusts spacing between columns */
+  margin-left: -15px; /* column gap */
   width: auto;
 }
 
 .masonry-grid_column {
-  padding-left: 10px; /* Adjusts spacing between columns */
+  padding-left: 15px; /* column gap */
   background-clip: padding-box;
 }
 
 .image-item {
-  margin-bottom: 10px;
-  border-radius: 6px;
+  margin-bottom: 15px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 4 / 3; /* Ensures uniform aspect ratio for most boxes */
+  cursor: pointer;
+  aspect-ratio: 4 / 3; /* aspect ratio for consistency */
 }
 
 .image-item img {
-  width: 100%; /* Makes the image fill the container width */
-  height: 100%; /* Ensures the image fills the height */
-  object-fit: cover; /* Crops the image to fit the box while maintaining aspect ratio */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
   border: 1px solid #ddd;
-}
-
-/* Specific styling for image not in proper ratio */
-.improper-size-image {
-  aspect-ratio: 16 / 9; /* Adjusts aspect ratio for a wider image */
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .image-item:hover img {
-  transform: scale(1.03); /* Adds a subtle hover effect */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds shadow on hover */
+  filter: brightness(1.1) blur(2px);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Show overlay on hover */
+.image-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  animation: fadeIn 0.5s ease;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.overlay-subtext {
+  color: #b4b4b4;
+  font-size: 1rem;
+  animation: fadeIn 0.5s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Hide the subtext on mobile devices */
+@media (max-width: 700px) {
+  .overlay-subtext {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1100px) {
   .masonry-grid_column {
-    padding-left: 8px;
+    padding-left: 10px;
   }
   .image-item {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 }
 
 @media (max-width: 700px) {
   .masonry-grid_column {
-    padding-left: 6px;
+    padding-left: 8px;
   }
   .image-item {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 }

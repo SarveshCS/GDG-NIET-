@@ -234,7 +234,7 @@ const TeamPage = () => {
       github: null,
       insta: "https://www.instagram.com/a_d_i_t_y_a_00_3",
       x: null,
-      tagline: "Jada bolne wala insaan",
+      tagline: "Empowering ideas, connecting innovators.",
     },
     {
       name: "Aman Bajpai",

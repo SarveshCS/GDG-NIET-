@@ -1,5 +1,83 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { uploadToCloudinary } from '@/utils/cloudinary'
+import { FaTimes } from 'react-icons/fa' // Import FontAwesome icon
+
+// FileUpload component with a two-column layout for text and preview image
+function FileUpload({ onFileSelect, previewUrl }) {
+  const [isDragging, setIsDragging] = useState(false)
+  const fileInputRef = useRef(null)
+
+  const handleDragEnter = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(false)
+  }
+
+  const handleDragOver = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  const handleDrop = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(false)
+    const file = e.dataTransfer.files[0]
+    if (file) {
+      onFileSelect(file)
+    }
+  }
+
+  const handleClick = () => {
+    fileInputRef.current.click()
+  }
+
+  return (
+    <div
+      className={`flex items-center justify-between h-40 border-2 ${
+        isDragging ? 'border-blue-500' : 'border-blue-300'
+      } border-dashed rounded-md p-6 cursor-pointer transition-transform duration-200 ease-in-out hover:scale-[1.01]`}
+      onClick={handleClick}
+      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => {
+          const file = e.target.files[0]
+          if (file) onFileSelect(file)
+        }}
+        ref={fileInputRef}
+        className="hidden"
+      />
+      {/* Left side: Instructional text */}
+      <div className="flex-1 pr-4">
+        <p className="text-lg text-gray-600">
+          Drag & drop your image here, or click to select file.
+        </p>
+      </div>
+      {/* Right side: Preview image (if available) */}
+      <div className="flex-none">
+        {previewUrl && (
+          <img
+            src={previewUrl}
+            alt="Preview"
+            className="w-52 h-32 object-cover rounded-md shadow-md"
+          />
+        )}
+      </div>
+    </div>
+  )
+}
 
 export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
   const [projectData, setProjectData] = useState({
@@ -26,53 +104,58 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
 
   const handleChange = (e) => {
     const { id, value } = e.target
-    setProjectData(prevData => ({
+    setProjectData((prevData) => ({
       ...prevData,
-      [id]: value
+      [id]: value,
     }))
   }
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      setSelectedImage(file)
-      // Create a preview URL
-      const previewUrl = URL.createObjectURL(file)
-      setProjectData(prev => ({
-        ...prev,
-        projectImage: previewUrl // Temporary preview URL
-      }))
-    }
+  const handleFileSelect = (file) => {
+    setSelectedImage(file)
+    const previewUrl = URL.createObjectURL(file)
+    setProjectData((prev) => ({
+      ...prev,
+      projectImage: previewUrl,
+    }))
   }
+
+  const getInputClasses = () =>
+    'w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 transition duration-200 ease-in-out text-sm sm:text-base'
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    const requiredFields = [
+      'name',
+      'erpId',
+      'rollNo',
+      'projectName',
+      'projectDescription',
+      'githubUrl',
+      'linkedinUrl',
+      'techStack',
+      'year',
+      'section',
+      'branch',
+    ]
+    const missingFields = requiredFields.filter(
+      (field) => !projectData[field]
+    )
+    if (missingFields.length > 0 || !selectedImage) {
+      alert(
+        `Missing required fields: ${missingFields.join(', ')}${
+          !selectedImage ? ', project image' : ''
+        }`
+      )
+      return
+    }
+
     try {
       setIsUploading(true)
-
-      // Validate required fields
-      const requiredFields = [
-        'name', 'erpId', 'rollNo', 'projectName', 'projectDescription',
-        'githubUrl', 'linkedinUrl', 'techStack', 'year',
-        'section', 'branch'
-      ]
-
-      const missingFields = requiredFields.filter(field => !projectData[field])
-      if (missingFields.length > 0) {
-        throw new Error(`Missing required fields: ${missingFields.join(', ')}`)
-      }
-
-      if (!selectedImage) {
-        throw new Error('Please select a project image')
-      }
-
-      // Upload image to Cloudinary
       const imageUrl = await uploadToCloudinary(selectedImage)
-
-      // Submit the data with the Cloudinary URL
       onSubmit({
         ...projectData,
-        projectImage: imageUrl
+        projectImage: imageUrl,
       })
     } catch (error) {
       console.error('Form submission error:', error)
@@ -86,22 +169,35 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-start p-4 z-50 overflow-y-auto">
-      <div className="bg-white rounded-2xl p-4 sm:p-6 w-full max-w-2xl my-4 sm:my-8 mx-auto">
-        <h2 className="text-xl sm:text-2xl font-bold mb-2">Submit Your Project</h2>
-        <p className="text-sm sm:text-base text-gray-600 mb-4">Fields marked with * are required</p>
-        
+      <div className="bg-white rounded-2xl p-4 sm:p-6 w-full max-w-2xl my-4 sm:my-8 mx-auto shadow-lg transition-all duration-300 ease-in-out">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-blue-600">
+            Submit Your Project
+          </h2>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <FaTimes />
+          </button>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 mb-4">
+          Fields marked with <span className="text-red-500">*</span> are required
+        </p>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Personal Information Section */}
-          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3">
-            <h3 className="font-semibold text-base sm:text-lg mb-2">Personal Information</h3>
-            
+          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3 shadow-md">
+            <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-500">
+              Personal Information
+            </h3>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-0.5">Full Name *</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.name}
                   onChange={handleChange}
                   required
@@ -109,11 +205,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="erpId" className="block text-sm font-medium text-gray-700 mb-0.5">ERP ID *</label>
+                <label htmlFor="erpId" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  ERP ID <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="erpId"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.erpId}
                   onChange={handleChange}
                   required
@@ -121,11 +219,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="rollNo" className="block text-sm font-medium text-gray-700 mb-0.5">Roll Number *</label>
+                <label htmlFor="rollNo" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Roll Number <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="rollNo"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.rollNo}
                   onChange={handleChange}
                   required
@@ -133,11 +233,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="collegeEmail" className="block text-sm font-medium text-gray-700 mb-0.5">College Email</label>
+                <label htmlFor="collegeEmail" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  College Email
+                </label>
                 <input
                   type="email"
                   id="collegeEmail"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.collegeEmail}
                   onChange={handleChange}
                 />
@@ -146,10 +248,12 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <div>
-                <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-0.5">Year *</label>
+                <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Year <span className="text-red-500">*</span>
+                </label>
                 <select
                   id="year"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.year}
                   onChange={handleChange}
                   required
@@ -163,11 +267,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="section" className="block text-sm font-medium text-gray-700 mb-0.5">Section *</label>
+                <label htmlFor="section" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Section <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="section"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.section}
                   onChange={handleChange}
                   required
@@ -175,11 +281,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="branch" className="block text-sm font-medium text-gray-700 mb-0.5">Branch *</label>
+                <label htmlFor="branch" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Branch <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="branch"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.branch}
                   onChange={handleChange}
                   required
@@ -189,16 +297,20 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
           </div>
 
           {/* Project Information Section */}
-          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3">
-            <h3 className="font-semibold text-base sm:text-lg mb-2">Project Information</h3>
-            
+          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3 shadow-md">
+            <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-500">
+              Project Information
+            </h3>
+
             <div className="space-y-3">
               <div>
-                <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-0.5">Project Name *</label>
+                <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Project Name <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   id="projectName"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.projectName}
                   onChange={handleChange}
                   required
@@ -206,10 +318,12 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="projectDescription" className="block text-sm font-medium text-gray-700 mb-0.5">Project Description *</label>
+                <label htmlFor="projectDescription" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Project Description <span className="text-red-500">*</span>
+                </label>
                 <textarea
                   id="projectDescription"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 text-sm sm:text-base"
+                  className={`${getInputClasses()} h-24`}
                   value={projectData.projectDescription}
                   onChange={handleChange}
                   required
@@ -218,13 +332,14 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
 
               <div>
                 <label htmlFor="techStack" className="block text-sm font-medium text-gray-700 mb-0.5">
-                  Tech Stack * <span className="text-gray-500">(comma-separated)</span>
+                  Tech Stack <span className="text-red-500">*</span>{' '}
+                  <span className="text-gray-500">(comma-separated)</span>
                 </label>
                 <input
                   type="text"
                   id="techStack"
                   placeholder="e.g., React, Node.js, MongoDB"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.techStack}
                   onChange={handleChange}
                   required
@@ -236,42 +351,31 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
 
               <div>
                 <label htmlFor="projectImage" className="block text-sm font-medium text-gray-700 mb-0.5">
-                  Project Image *
+                  Project Image <span className="text-red-500">*</span>
                 </label>
-                <div className="mt-1 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-                  <input
-                    type="file"
-                    id="projectImage"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                    required
-                  />
-                  {projectData.projectImage && (
-                    <div className="relative w-20 h-20 flex-shrink-0">
-                      <img
-                        src={projectData.projectImage}
-                        alt="Preview"
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                  )}
-                </div>
+                <FileUpload
+                  onFileSelect={handleFileSelect}
+                  previewUrl={projectData.projectImage}
+                />
               </div>
             </div>
           </div>
 
           {/* Links Section */}
-          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3">
-            <h3 className="font-semibold text-base sm:text-lg mb-2">Project Links</h3>
-            
+          <div className="bg-gray-50 p-3 sm:p-4 rounded-lg space-y-3 shadow-md">
+            <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-500">
+              Project Links
+            </h3>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700 mb-0.5">GitHub URL *</label>
+                <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  GitHub URL <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="url"
                   id="githubUrl"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.githubUrl}
                   onChange={handleChange}
                   required
@@ -279,11 +383,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="linkedinUrl" className="block text-sm font-medium text-gray-700 mb-0.5">LinkedIn URL *</label>
+                <label htmlFor="linkedinUrl" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  LinkedIn URL <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="url"
                   id="linkedinUrl"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.linkedinUrl}
                   onChange={handleChange}
                   required
@@ -291,22 +397,26 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
               </div>
 
               <div>
-                <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700 mb-0.5">YouTube Demo URL</label>
+                <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  YouTube Demo URL
+                </label>
                 <input
                   type="url"
                   id="youtubeUrl"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.youtubeUrl}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="liveDemoUrl" className="block text-sm font-medium text-gray-700 mb-0.5">Live Demo URL</label>
+                <label htmlFor="liveDemoUrl" className="block text-sm font-medium text-gray-700 mb-0.5">
+                  Live Demo URL
+                </label>
                 <input
                   type="url"
                   id="liveDemoUrl"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className={getInputClasses()}
                   value={projectData.liveDemoUrl}
                   onChange={handleChange}
                 />
@@ -318,13 +428,13 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition text-sm sm:text-base"
+              className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition duration-200 ease-in-out"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50 text-sm sm:text-base"
+              className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 ease-in-out disabled:opacity-50"
               disabled={isUploading}
             >
               {isUploading ? 'Uploading...' : 'Submit Project'}
@@ -335,4 +445,3 @@ export default function SubmitProjectModal({ isOpen, onClose, onSubmit }) {
     </div>
   )
 }
-

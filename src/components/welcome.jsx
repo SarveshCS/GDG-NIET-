@@ -6,7 +6,7 @@ const CreativeButtons = () => {
 
   return (
     <div className="bg-gray-50 flex items-center justify-center">
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute -z-10 w-96 h-96 bg-gradient-to-r from-yellow-200 to-blue-200 rounded-full blur-3xl opacity-20 animate-pulse" 
              style={{

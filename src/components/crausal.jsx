@@ -9,7 +9,10 @@ import {
 
 const events = [
   {
-    image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
+      image: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+  },
+  {
+      image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
   },
   {
       image: "/images/events/Google_Women_Engineers_Program_Cohort_6-2024/Google_Women_Engineers_Program_Cohort_6-2024-main.jpg",

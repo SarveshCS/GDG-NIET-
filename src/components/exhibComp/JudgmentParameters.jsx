@@ -36,7 +36,7 @@ export default function JudgmentParameters() {
         <div className="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
           <Github className="w-5 h-5 text-gray-700 mr-2" />
           <a
-            href="https://github.com/gdgniet/project-guidelines"
+            href="https://github.com/GDG-NIET/GDG-NIET-Guidelines"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800 font-medium"

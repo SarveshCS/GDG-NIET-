@@ -40,7 +40,7 @@ function FileUpload({ onFileSelect, previewUrl }) {
 
   return (
     <div
-      className={`flex items-center justify-between h-40 border-2 ${
+      className={`flex items-center justify-between h-40 border-2 mt-2 ${
         isDragging ? 'border-blue-500' : 'border-blue-300'
       } border-dashed rounded-md p-6 cursor-pointer transition-transform duration-200 ease-in-out hover:scale-[1.01]`}
       onClick={handleClick}
@@ -61,7 +61,7 @@ function FileUpload({ onFileSelect, previewUrl }) {
       />
       {/* Left side: Instructional text */}
       <div className="flex-1 pr-4">
-        <p className="text-lg text-gray-600">
+        <p className="text-sm md:text-lg text-gray-600">
           Drag & drop your image here, or click to select file.
         </p>
       </div>
@@ -71,7 +71,7 @@ function FileUpload({ onFileSelect, previewUrl }) {
           <img
             src={previewUrl}
             alt="Preview"
-            className="w-52 h-32 object-cover rounded-md shadow-md"
+            className="w-32 h-32 md:w-52 object-cover rounded-md shadow-md"
           />
         )}
       </div>

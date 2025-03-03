@@ -113,7 +113,7 @@ const CollegeMap = () => {
             {mapError}
           </div>
         ) : (
-          <div ref={mapRef} className="h-full w-full"></div>
+          <div ref={mapRef} className="min-h-[500px] w-full"></div>
         )}
       </div>
     </div>

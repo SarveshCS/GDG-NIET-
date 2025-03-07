@@ -5,7 +5,7 @@ import "@/components/CompCss/MediaGallery.css";
 
 const galleryImages = [
   {
-    src: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+    src: "/images/events/GEN_AI-Study_Jams_2025_Swags_Distribution/GEN_AI-Study_Jams_2025_Swags_Distribution-main.jpg",
     alt: "GEN AI Study Jams 2024 Swags Distribution",
   },
   {
@@ -57,7 +57,7 @@ function MediaGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <div className="media-gallery px-4 py-12 mx-auto">
+    <div className="media-gallery px-4 py-20 mx-auto">
       <div className="gallery-header">
         <h1 class="text-4xl font-bold mb-4">GDG NIET Gallery</h1>
         <p class="text-xl text-gray-600">Capturing moments of innovation and collaboration</p>

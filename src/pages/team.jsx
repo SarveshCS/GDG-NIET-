@@ -263,8 +263,8 @@ const TeamPage = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[url('/team-bg.png')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600 m-10 text-center">
+      <div className="min-h-screen bg-[url('/team-bg.png')] bg-cover bg-center flex flex-col justify-center items-center py-20">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent min-h-fit py-2 bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600 mx-10 my-8 text-center">
           Meet the Dream Team Behind the Magic!
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 px-4 md:px-8">

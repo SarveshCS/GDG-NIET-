@@ -184,13 +184,13 @@ const EventsPage = () => {
       },
       {
         id: 13,
-        title: "GEN AI Study Jams 2024 Swags Distribution",
-        date: "2024",
+        title: "GEN AI Study Jams 2025 Swags Distribution",
+        date: "2025",
         time: "3:00 PM - 5:00 PM",
         location: "NIET campus",
         description:
           "A session to celebrate and distribute swag for participants who completed the GEN AI Study Jams 2024.",
-        image: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+        image: "/images/events/GEN_AI-Study_Jams_2025_Swags_Distribution/GEN_AI-Study_Jams_2025_Swags_Distribution-main.jpg",
         attendees: 120,
         tags: ["Innovation", "Technology", "Swags", "Networking"],
       },
@@ -324,9 +324,9 @@ const EventsPage = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">GDG NIET Events</h1>
+          <h1 className="text-4xl font-bold my-8 mx-4">GDG NIET Events</h1>
           <p className="text-xl text-gray-600">
             Join us for exciting tech events, workshops, and conferences
           </p>

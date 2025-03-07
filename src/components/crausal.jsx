@@ -9,7 +9,7 @@ import {
 
 const events = [
   {
-      image: "/images/events/GEN_AI-Study_Jams_2024_Swags_Distribution/GEN_AI-Study_Jams_2024_Swags_Distribution-main.jpg",
+      image: "/images/events/GEN_AI-Study_Jams_2025_Swags_Distribution/GEN_AI-Study_Jams_2025_Swags_Distribution-main.jpg",
   },
   {
       image: "/images/events/innova_2024/INNOVA_2024-main.jpg",
